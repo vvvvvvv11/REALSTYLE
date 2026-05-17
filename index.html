@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>TerrorChina — Заказ товаров из Китая</title>
+    <title>REALSTYLE — Заказ товаров из Китая</title>
     <meta name="description" content="Заказ товаров из Китая с быстрой доставкой в Беларусь">
     <meta name="theme-color" content="#FAFAF8">
     
@@ -23,14 +23,12 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        /* Utils */
         .min-h-screen { min-height: 100vh; }
         .tc-shell { width: min(100%, 448px); margin: 0 auto; }
         .tc-nav-page { padding-bottom: calc(136px + env(safe-area-inset-bottom, 0px)); }
         .px-6 { padding-left: 24px; padding-right: 24px; }
         .pt-\[80px\] { padding-top: 80px; }
         
-        /* Header */
         .header {
             position: fixed;
             top: 0;
@@ -86,7 +84,6 @@
             display: none;
         }
         
-        /* Marketplace header */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -108,7 +105,6 @@
         }
         .section-link:active { opacity: 0.5; }
         
-        /* Marketplace grid */
         .marketplace-scroll {
             overflow-x: auto;
             scroll-snap-type: x mandatory;
@@ -162,7 +158,6 @@
         .marketplace-icon-inner img { width: 100%; height: 100%; object-fit: cover; }
         .marketplace-name { font-size: 12px; font-weight: 600; color: #1A1A1A; text-align: center; }
         
-        /* Scroll buttons */
         .scroll-btn {
             position: absolute;
             display: flex;
@@ -175,11 +170,6 @@
             border: none;
             cursor: pointer;
         }
-        .scroll-btn-left {
-            left: -2px;
-            background: linear-gradient(to right, #FAFAF8 40%, transparent);
-            border-radius: 0 8px 8px 0;
-        }
         .scroll-btn-right {
             right: -2px;
             background: linear-gradient(to left, #FAFAF8 40%, transparent);
@@ -187,7 +177,6 @@
         }
         .scroll-btn span { font-size: 18px; color: #9E9E9E; }
         
-        /* Showcase */
         .showcase-container {
             margin-top: 24px;
             position: relative;
@@ -248,7 +237,6 @@
         .showcase-subtitle { font-size: 12px; color: rgba(255,255,255,0.8); }
         .grid-span-2 { grid-area: 1 / 1 / 3; }
         
-        /* Steps */
         .steps-section { margin-top: 40px; }
         .steps-title { font-size: 18px; font-weight: 700; margin-bottom: 24px; color: #1A1A1A; }
         .step-item {
@@ -273,7 +261,6 @@
         .step-title { font-size: 16px; font-weight: 700; color: #1A1A1A; margin-bottom: 4px; }
         .step-desc { font-size: 14px; color: #6B6B6B; line-height: 1.4; }
         
-        /* Reviews */
         .reviews-section { margin-top: 40px; }
         .reviews-header {
             display: flex;
@@ -286,7 +273,6 @@
             align-items: center;
             gap: 4px;
         }
-        .rating-stars { font-size: 16px; color: #1A1A1A; }
         .rating-score { font-size: 15px; font-weight: 600; color: #1A1A1A; }
         .rating-count { font-size: 13px; color: #9E9E9E; margin-left: 2px; }
         .reviews-scroll {
@@ -316,7 +302,6 @@
             flex-direction: column;
             justify-content: space-between;
             cursor: pointer;
-            transition: transform 0.15s;
         }
         .review-card:active { transform: scale(0.98); }
         .review-header {
@@ -342,7 +327,6 @@
             margin-top: 12px;
         }
         
-        /* FAQ Styles */
         .faq-section { margin-top: 40px; }
         .faq-item {
             background: #FFFFFF;
@@ -398,7 +382,6 @@
             white-space: pre-line;
         }
         
-        /* Contact card */
         .contact-card {
             background: #F5F5F3;
             border-radius: 16px;
@@ -436,7 +419,6 @@
         }
         .contact-btn:active { transform: scale(0.97); }
         
-        /* Bottom navigation */
         .bottom-nav {
             position: fixed;
             z-index: 50;
@@ -496,7 +478,6 @@
         .add-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.1); }
         .add-btn svg { fill: #fff; }
         
-        /* Scroll to top */
         .scroll-top {
             position: fixed;
             z-index: 60;
@@ -517,126 +498,8 @@
             transition: all 0.15s;
             display: none;
         }
-        .scroll-top:active { transform: scale(0.95); background: rgba(255,255,255,0.9); }
+        .scroll-top:active { transform: scale(0.95); }
         
-        /* Notifications dropdown */
-        .notifications-dropdown {
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            width: min(285px, calc(75vw - 24px));
-            max-height: 400px;
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 12px 48px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
-            padding: 12px 0;
-            overflow-y: auto;
-            z-index: 100;
-            animation: dropdownIn 0.2s ease-out;
-            transform-origin: 100% 0;
-            display: none;
-        }
-        @keyframes dropdownIn {
-            from { opacity: 0; transform: scale(0.95) translateY(-8px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .notification-item {
-            width: 100%;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px 16px;
-            text-align: left;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-        .notification-item:hover { background: #F5F5F3; }
-        .notification-unread { background: #F5F5F3; }
-        .notification-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .notification-title { font-size: 12px; font-weight: 600; color: #1A1A1A; }
-        .notification-text { font-size: 12px; color: #6B6B6B; margin-top: 2px; }
-        .notification-date { font-size: 11px; color: #9E9E9E; margin-top: 2px; }
-        
-        /* Calculator */
-        .calc-input {
-            width: 100%;
-            background: #fff;
-            border: 1px solid #DDDDD8;
-            border-radius: 12px;
-            padding: 16px 60px 16px 24px;
-            font-size: 18px;
-            font-weight: 700;
-            color: #1A1A1A;
-            outline: none;
-        }
-        .calc-input:focus { border-color: #1A1A1A; box-shadow: 0 0 0 2px rgba(26,26,26,0.1); }
-        .total-card {
-            background: #1A1A1A;
-            border-radius: 24px;
-            padding: 32px;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-            margin-top: 24px;
-        }
-        .total-card-bg {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            background: rgba(255,255,255,0.05);
-            filter: blur(48px);
-            right: -40px;
-            top: -40px;
-            border-radius: 9999px;
-        }
-        .info-card {
-            background: #F5F5F3;
-            border-radius: 20px;
-            padding: 16px;
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
-        }
-        
-        /* Orders */
-        .order-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-        }
-        .empty-orders {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 64px 0;
-        }
-        .empty-icon {
-            width: 192px;
-            height: 192px;
-            background: #F5F5F3;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
-        .empty-icon span { font-size: 64px; color: #9E9E9E; }
-        
-        /* Modal overlay */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -675,10 +538,7 @@
             margin: 12px auto;
         }
         
-        .modal-padding {
-            padding: 0 24px 24px;
-        }
-        
+        .modal-padding { padding: 0 24px 24px; }
         .modal-title {
             font-size: 20px;
             font-weight: 700;
@@ -687,7 +547,6 @@
             color: #1A1A1A;
         }
         
-        /* Onboarding modal specific */
         .onboarding-steps {
             display: flex;
             flex-direction: column;
@@ -760,7 +619,6 @@
         }
         .onboarding-btn:active { transform: scale(0.97); }
         
-        /* Order form modal */
         .form-group {
             margin-bottom: 20px;
         }
@@ -771,9 +629,7 @@
             color: #1A1A1A;
             margin-bottom: 8px;
         }
-        .form-label span {
-            color: #C62828;
-        }
+        .form-label span { color: #C62828; }
         .form-input {
             width: 100%;
             background: #F5F5F3;
@@ -789,12 +645,7 @@
             border-color: #1A1A1A;
             background: #fff;
         }
-        .form-input.error {
-            border-color: #C62828;
-        }
-        .price-wrapper {
-            position: relative;
-        }
+        .price-wrapper { position: relative; }
         .price-currency {
             position: absolute;
             right: 16px;
@@ -808,6 +659,7 @@
             font-size: 12px;
             color: #C62828;
             margin-top: 4px;
+            display: none;
         }
         .total-hint {
             font-size: 12px;
@@ -832,14 +684,7 @@
             gap: 8px;
         }
         .submit-btn:active { transform: scale(0.97); }
-        .submit-btn.disabled {
-            background: #E5E5E3;
-            color: #9E9E9E;
-            cursor: not-allowed;
-        }
-        .submit-btn.disabled:active { transform: none; }
         
-        /* Success toast */
         .toast {
             position: fixed;
             left: 50%;
@@ -864,11 +709,9 @@
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         
-        /* Tabs */
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         
-        /* Animations */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
@@ -899,7 +742,6 @@
         .delay-500 { animation-delay: 500ms; }
         .delay-520 { animation-delay: 520ms; }
         
-        /* Material icons */
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -948,14 +790,13 @@
 </head>
 <body>
     <main class="min-h-screen">
-        <!-- Header -->
         <header class="header" id="header">
             <div class="header-content">
                 <div class="flex items-center gap-3">
-                    <div class="avatar"><span>А</span></div>
+                    <div class="avatar"><span>R</span></div>
                     <div>
                         <p class="greeting-label">REALSTYLE</p>
-                        <p class="greeting-name">Привет!</p>
+                        <p class="greeting-name">Привет, Алекс!</p>
                     </div>
                 </div>
                 <div class="relative">
@@ -965,12 +806,11 @@
                         </svg>
                         <div class="notification-badge" id="notificationBadge"></div>
                     </button>
-                    <div id="notificationsDropdown" class="notifications-dropdown"></div>
+                    <div id="notificationsDropdown" class="notifications-dropdown" style="display: none;"></div>
                 </div>
             </div>
         </header>
         
-        <!-- Tab: Marketplaces (Stores) -->
         <div id="tab-stores" class="tab-content active">
             <div class="tc-shell tc-nav-page pt-[80px] px-6">
                 <div class="section-header animate-fade-up delay-100">
@@ -985,33 +825,25 @@
                                 <div class="marketplace-grid">
                                     <button class="marketplace-item animate-pop-up delay-200" onclick="openMarketplace('poizon')">
                                         <div class="marketplace-icon">
-                                            <div class="marketplace-icon-inner">
-                                                <img src="data:image/svg+xml,%3Csvg xmlns='https://imgur.com/a/hySVcPZ' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231A1A1A'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='12' font-weight='bold'%3EPOIZON%3C/text%3E%3C/svg%3E" alt="Poizon">
-                                            </div>
+                                            <div class="marketplace-icon-inner"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231A1A1A'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='12' font-weight='bold'%3EPOIZON%3C/text%3E%3C/svg%3E" alt="Poizon"></div>
                                         </div>
                                         <span class="marketplace-name">Poizon</span>
                                     </button>
                                     <button class="marketplace-item animate-pop-up delay-280" onclick="openMarketplace('95')">
                                         <div class="marketplace-icon">
-                                            <div class="marketplace-icon-inner">
-                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232D2D2D'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='16' font-weight='bold'%3E95%3C/text%3E%3C/svg%3E" alt="95">
-                                            </div>
+                                            <div class="marketplace-icon-inner"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232D2D2D'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='16' font-weight='bold'%3E95%3C/text%3E%3C/svg%3E" alt="95"></div>
                                         </div>
                                         <span class="marketplace-name">95</span>
                                     </button>
                                     <button class="marketplace-item animate-pop-up delay-360" onclick="openMarketplace('goofish')">
                                         <div class="marketplace-icon">
-                                            <div class="marketplace-icon-inner">
-                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2337474F'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='10' font-weight='bold'%3EGOOFISH%3C/text%3E%3C/svg%3E" alt="GooFish">
-                                            </div>
+                                            <div class="marketplace-icon-inner"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2337474F'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='10' font-weight='bold'%3EGOOFISH%3C/text%3E%3C/svg%3E" alt="GooFish"></div>
                                         </div>
                                         <span class="marketplace-name">GooFish</span>
                                     </button>
                                     <button class="marketplace-item animate-pop-up delay-440" onclick="openMarketplace('taobao')">
                                         <div class="marketplace-icon">
-                                            <div class="marketplace-icon-inner">
-                                                <img src="data:image/svg+xml,%3Csvg xmlns='https://imgur.com/qglaoWd' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23FF5000'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='10' font-weight='bold'%3ETAOBAO%3C/text%3E%3C/svg%3E" alt="Taobao">
-                                            </div>
+                                            <div class="marketplace-icon-inner"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23FF5000'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='10' font-weight='bold'%3ETAOBAO%3C/text%3E%3C/svg%3E" alt="Taobao"></div>
                                         </div>
                                         <span class="marketplace-name">Taobao</span>
                                     </button>
@@ -1021,9 +853,7 @@
                                 <div class="marketplace-grid">
                                     <button class="marketplace-item animate-pop-up delay-520" onclick="openMarketplace('pinduoduo')">
                                         <div class="marketplace-icon">
-                                            <div class="marketplace-icon-inner">
-                                                <img src="data:image/svg+xml,%3Csvg xmlns='https://imgur.com/undefined' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23880E4F'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='8' font-weight='bold'%3EPINDUODUO%3C/text%3E%3C/svg%3E" alt="Pinduoduo">
-                                            </div>
+                                            <div class="marketplace-icon-inner"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23880E4F'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='8' font-weight='bold'%3EPINDUODUO%3C/text%3E%3C/svg%3E" alt="Pinduoduo"></div>
                                         </div>
                                         <span class="marketplace-name">Pinduoduo</span>
                                     </button>
@@ -1036,61 +866,13 @@
                     </button>
                 </div>
                 
-                <!-- Showcase -->
                 <div class="showcase-container">
                     <div class="showcase-scroll" id="showcaseScroll">
-                        <div class="showcase-track">
-                            <div class="showcase-page">
-                                <div class="animate-scale-in delay-400">
-                                    <div class="showcase-grid">
-                                        <div class="grid-span-2">
-                                            <div class="showcase-card" onclick="openProduct()">
-                                                <img src="data:image/svg+xml,%3Csvg xmlns='https://imgur.com/a/SDXeDlS' viewBox='0 0 400 600'%3E%3Crect width='400' height='600' fill='%23DDDDD8'/%3E%3C/svg%3E" alt="China">
-                                                <div class="showcase-overlay">
-                                                    <p class="showcase-title"></p>
-                                                    <p class="showcase-subtitle"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="showcase-card" onclick="openProduct()">
-                                            <img src="data:image/svg+xml,%3Csvg xmlns='https://imgur.com/bXSH5qz' viewBox='0 0 200 300'%3E%3Crect width='200' height='300' fill='%23E5E5E3'/%3E%3C/svg%3E" alt="">
-                                        </div>
-                                        <div class="showcase-card" onclick="openProduct()">
-                                            <img src="data:image/svg+xml,%3Csvg xmlns='https://terrorchina.com.es/api/showcase/13/photo' viewBox='0 0 200 300'%3E%3Crect width='200' height='300' fill='%23EEEEEC'/%3E%3C/svg%3E" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="showcase-page">
-                                <div class="animate-scale-in delay-500">
-                                    <div class="showcase-grid">
-                                        <div class="showcase-card" onclick="openProduct()">
-                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Crect width='200' height='300' fill='%23D3D3D3'/%3E%3C/svg%3E" alt="">
-                                        </div>
-                                        <div class="grid-span-2">
-                                            <div class="showcase-card" onclick="openProduct()">
-                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect width='400' height='600' fill='%23BDBDBD'/%3E%3C/svg%3E" alt="Stone Island">
-                                                <div class="showcase-overlay">
-                                                    <p class="showcase-title">Stone Island <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 -960 960 960" width="14" fill="rgba(255,255,255,0.8)"><path d="M318-120q-82 0-140-58t-58-140q0-40 15-76t43-64l134-133 56 56-134 134q-17 17-25.5 38.5T200-318q0 49 34.5 83.5T318-200q23 0 45-8.5t39-25.5l133-134 57 57-134 133q-28 28-64 43t-76 15Zm79-220-57-57 223-223 57 57-223 223Zm251-28-56-57 134-133q17-17 25-38t8-44q0-50-34-85t-84-35q-23 0-44.5 8.5T558-726L425-592l-57-56 134-134q28-28 64-43t76-15q82 0 139.5 58T839-641q0 39-14.5 75T782-502L648-368Z"></path></svg></p>
-                                                    <p class="showcase-subtitle">Case iPhone</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="showcase-card" onclick="openProduct()">
-                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Crect width='200' height='300' fill='%23CACACA'/%3E%3C/svg%3E" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="showcase-track" id="showcaseTrack"></div>
                     </div>
-                    <div class="flex justify-center mt-3" style="gap: 8px;" id="showcaseDots">
-                        <button class="showcase-dot active" onclick="goToShowcase(0)" style="width: 8px; height: 8px; border-radius: 9999px; padding: 0; background: #1A1A1A; border: none; cursor: pointer;"></button>
-                        <button class="showcase-dot" onclick="goToShowcase(1)" style="width: 8px; height: 8px; border-radius: 9999px; padding: 0; background: #DDDDD8; border: none; cursor: pointer;"></button>
-                    </div>
+                    <div class="flex justify-center mt-3" style="gap: 8px;" id="showcaseDots"></div>
                 </div>
                 
-                <!-- How it works -->
                 <div class="steps-section">
                     <h2 class="steps-title animate-fade-up">Как это работает</h2>
                     <div class="flex flex-col gap-4">
@@ -1125,7 +907,6 @@
                     </div>
                 </div>
                 
-                <!-- Reviews -->
                 <div class="reviews-section">
                     <div class="reviews-header animate-fade-up">
                         <h2 class="section-title">Отзывы</h2>
@@ -1142,21 +923,18 @@
             </div>
         </div>
         
-        <!-- Tab: Calculator -->
         <div id="tab-calculator" class="tab-content">
             <div class="tc-shell tc-nav-page pt-[80px] px-6">
                 <h1 class="section-title animate-fade-up" style="font-size: 32px; margin-top: 16px;">Калькулятор</h1>
-                
                 <div class="mt-6">
                     <label class="text-sm font-semibold" style="color: #6B6B6B;">Цена на площадке (¥)</label>
                     <div class="relative mt-2">
-                        <input type="number" id="priceInput" placeholder="0.00" class="calc-input" oninput="updateTotal()">
+                        <input type="number" id="priceInput" placeholder="0.00" class="form-input" style="padding: 16px 60px 16px 24px; font-size: 18px; font-weight: 700;" oninput="updateTotal()">
                         <span class="absolute right-6 top-1/2 -translate-y-1/2 text-lg font-bold" style="color: #1A1A1A; opacity: 0.6;">¥</span>
                     </div>
                 </div>
-                
-                <div class="total-card">
-                    <div class="total-card-bg"></div>
+                <div class="total-card" style="background: #1A1A1A; border-radius: 24px; padding: 32px; color: #fff; position: relative; overflow: hidden; margin-top: 24px;">
+                    <div style="position: absolute; width: 160px; height: 160px; background: rgba(255,255,255,0.05); filter: blur(48px); right: -40px; top: -40px; border-radius: 9999px;"></div>
                     <p class="text-sm" style="color: rgba(255,255,255,0.7);">Итого</p>
                     <p class="text-3xl font-extrabold mt-1" id="totalPrice">$0.00</p>
                     <div class="flex justify-between mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.1);">
@@ -1164,24 +942,10 @@
                         <span class="text-sm" style="color: rgba(255,255,255,0.7);">от $15/кг</span>
                     </div>
                 </div>
-                
-                <div class="info-card">
+                <div class="info-card" style="background: #F5F5F3; border-radius: 20px; padding: 16px; display: flex; gap: 12px; margin-top: 16px;">
                     <span class="material-symbols-outlined shrink-0" style="font-size: 18px; color: #6B6B6B;">info</span>
                     <p class="text-xs leading-relaxed" style="color: #6B6B6B;">Стоимость доставки рассчитывается отдельно и зависит от категории товара, веса и упаковки.</p>
                 </div>
-                
-                <div class="info-card">
-                    <span class="material-symbols-outlined shrink-0" style="font-size: 18px; color: #6B6B6B;">info</span>
-                    <div style="flex: 1;">
-                        <p class="text-xs font-semibold mb-2" style="color: #1A1A1A;">Примеры</p>
-                        <div class="flex flex-col gap-1.5">
-                            <p class="text-xs" style="color: #6B6B6B;">iPhone 17 Pro Max — $30</p>
-                            <p class="text-xs" style="color: #6B6B6B;">Свитер Balenciaga (0,6 кг) — $8</p>
-                            <p class="text-xs" style="color: #6B6B6B;">Кроссовки New Balance (0,9 кг) — $15 без коробки, $30 с коробкой</p>
-                        </div>
-                    </div>
-                </div>
-                
                 <button class="contact-btn mt-6" onclick="contactManager()">
                     <span class="material-symbols-outlined">chat</span>
                     Связаться с менеджером
@@ -1189,7 +953,6 @@
             </div>
         </div>
         
-        <!-- Tab: FAQ -->
         <div id="tab-faq" class="tab-content">
             <div class="tc-shell tc-nav-page pt-[80px] px-6">
                 <h1 class="section-title animate-fade-up" style="font-size: 32px; margin-top: 16px;">Частые вопросы</h1>
@@ -1205,16 +968,15 @@
             </div>
         </div>
         
-        <!-- Tab: Orders -->
         <div id="tab-orders" class="tab-content">
             <div class="tc-shell tc-nav-page pt-[80px] px-6">
                 <div class="mt-4 mb-4">
                     <h1 class="section-title animate-fade-up" style="font-size: 32px;">Ваши заказы</h1>
                 </div>
                 <div id="ordersList"></div>
-                <div id="noOrdersMessage" class="empty-orders">
-                    <div class="empty-icon">
-                        <span class="material-symbols-outlined">shopping_bag</span>
+                <div id="noOrdersMessage" class="empty-orders" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 64px 0;">
+                    <div style="width: 192px; height: 192px; background: #F5F5F3; border-radius: 9999px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                        <span class="material-symbols-outlined" style="font-size: 64px; color: #9E9E9E;">shopping_bag</span>
                     </div>
                     <h2 class="text-xl font-bold mb-2" style="color: #1A1A1A;">У вас пока нет заказов</h2>
                     <p class="text-sm" style="color: #6B6B6B;">Самое время сделать первый заказ из Китая</p>
@@ -1222,12 +984,10 @@
             </div>
         </div>
         
-        <!-- Scroll to top button -->
         <button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
             <span class="material-symbols-outlined">arrow_upward</span>
         </button>
         
-        <!-- Bottom navigation -->
         <nav class="bottom-nav">
             <div class="nav-bg"></div>
             <div class="nav-bar">
@@ -1264,32 +1024,11 @@
     </main>
     
     <script>
-        // ==================== DATA ====================
-        const reviews = [
-            { author: "Максим", rating: 5, text: "Всё чики-пики. Дядя Лёша делает ГРЯЗЬ. За такой сервис и Ляяяяяям Двести можно отдать. Ахаххах, если серьёзно: быстро согласовали, заказали — и уже сижу довольный с товаром на руках 🤝", date: "2026-05-16" },
-            { author: "Slava", rating: 5, text: "Все быстро и оперативно, без каких либо проблем, при необходимости помогут/подскажут/объяснят, автору 5 звезд", date: "2026-04-30" },
-            { author: "Vladislav", rating: 5, text: "Всё чётко и быстро, спасибо!", date: "2026-04-28" },
-            { author: "Артём", rating: 5, text: "Все быстро,четко,Лешка ювелир называйте", date: "2026-04-27" },
-            { author: "DeLaPablo", rating: 5, text: "Бомбовая пара 10/10, спасибо Леше. Уже заказываю 4 пару! Все четко!", date: "2026-04-20" }
-        ];
-        
-        const faqData = [
-            { q: "Как оформить заказ?", a: "Найдите понравившийся товар на одной из представленных площадок: Poizon, 95, GooFish или Taobao. Сохраните ссылку на выбранную позицию и оформите заказ прямо в приложении, указав нужные параметры. После оформления с вами свяжется менеджер, чтобы уточнить детали и согласовать оплату." },
-            { q: "Сколько стоит доставка?", a: "Стоимость доставки зависит от категории товара, веса и упаковки.\n\nЦены на авиадоставку популярных категорий:\n• ноутбук — $23/кг\n• телефон — $30 за 1 единицу\n• обувь без коробки — от $15/кг\n• обувь с коробкой — $30/кг\n• одежда — $14/кг\n\nПримеры:\n• кофта Stone Island — 0,4 кг ($5,4)\n• кроссовки Nike Dunk Low (38 EU) — 0,85 кг ($15)\n• кроссовки New Balance 2002R (46 EU) — 1,3 кг ($19,5)" },
-            { q: "Как отследить заказ?", a: "Статус заказа отображается во вкладке «Заказы» в приложении. При каждом изменении статуса вы также получите уведомление в Telegram." },
-            { q: "Какие способы оплаты?", a: "Оплатить заказ можно в USDT, переводом по СБП в RUB, а также наличными в BYN или USD." },
-            { q: "Через сколько я получу заказ?", a: "Срок получения заказа зависит от того, как быстро продавец отправит товар по Китаю до склада авиадоставки. На площадке Poizon ориентировочный срок доставки обычно указан справа от цены — чаще всего это 1–4 дня.\n\nПосле поступления на склад товар принимается, упаковывается и готовится к отправке в Беларусь. Обычно вылет из Китая происходит в понедельник, а прибытие в Беларусь — во вторник.\n\nНапример, если продавец оперативно отправил товар, и он поступил на склад вовремя, заказ может приехать в Беларусь уже через несколько дней." },
-            { q: "Можно ли заказать, если товара нет на площадке?", a: "Если нужного товара нет на одной из представленных площадок, вы можете связаться с менеджером в Telegram. Мы подскажем, можно ли найти его на другой платформе или предложим альтернативу." },
-            { q: "Когда нужно оплачивать заказ?", a: "После оформления заказа с вами свяжется менеджер, уточнит детали и сообщит порядок оплаты. Оплата производится после согласования всех нюансов по заказу." },
-            { q: "Можно ли отменить заказ после оформления?", a: "Если заказ ещё не выкуплен, возможность отмены обычно сохраняется. Если товар уже оплачен продавцу, отмена зависит от условий конкретной площадки и продавца." }
-        ];
-        
-        let currentTab = 'stores';
-        let notificationsOpen = false;
         const RATE = 6.7;
         const COMMISSION = 30;
+        let currentTab = 'stores';
+        let notificationsOpen = false;
         
-        // ==================== UTILS ====================
         function formatDate(dateStr) {
             const date = new Date(dateStr);
             const now = new Date();
@@ -1304,244 +1043,135 @@
         function showToast(message, isError = false) {
             const existing = document.querySelector('.toast');
             if (existing) existing.remove();
-            
             const toast = document.createElement('div');
             toast.className = `toast ${isError ? 'error' : ''}`;
             toast.innerHTML = `<span class="material-symbols-outlined">${isError ? 'error' : 'check_circle'}</span>${message}`;
             document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
         }
         
-        // ==================== ONBOARDING ====================
-        function showOnboarding() {
-            const modal = document.createElement('div');
-            modal.className = 'modal-overlay';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-handle"></div>
-                    <div class="modal-padding">
-                        <h1 class="modal-title">Добро пожаловать в TerrorChina</h1>
-                        <p class="text-center text-sm" style="color: #6B6B6B; margin-bottom: 24px;">Ваш персональный помощник в мире товаров из Китая</p>
-                        
-                        <div class="onboarding-steps">
-                            <div class="onboarding-step">
-                                <div class="onboarding-step-num">1</div>
-                                <div>
-                                    <div class="onboarding-step-title">Выбираете товар</div>
-                                    <div class="onboarding-step-desc">Выберите товар на одной из доступных площадок и сохраните ссылку</div>
-                                </div>
-                            </div>
-                            <div class="onboarding-step">
-                                <div class="onboarding-step-num">2</div>
-                                <div>
-                                    <div class="onboarding-step-title">Оформляете заказ</div>
-                                    <div class="onboarding-step-desc">Нажмите «+» в приложении, вставьте ссылку на товар и укажите нужные параметры</div>
-                                </div>
-                            </div>
-                            <div class="onboarding-step">
-                                <div class="onboarding-step-num">3</div>
-                                <div>
-                                    <div class="onboarding-step-title">Доставляем</div>
-                                    <div class="onboarding-step-desc">Отправляем заказы быстрой авиадоставкой в Беларусь</div>
-                                </div>
-                            </div>
-                            <div class="onboarding-step">
-                                <div class="onboarding-step-num">4</div>
-                                <div>
-                                    <div class="onboarding-step-title">Получаете заказ</div>
-                                    <div class="onboarding-step-desc">Получаете уведомление и забираете заказ</div>
-                                </div>
-                            </div>
+        async function loadGallery() {
+            try {
+                const response = await fetch('/admin/api/get_gallery.php');
+                const data = await response.json();
+                if (data.success) {
+                    renderGallery(data.items);
+                }
+            } catch(e) { console.error('Gallery load error:', e); }
+        }
+        
+        function renderGallery(items) {
+            const track = document.getElementById('showcaseTrack');
+            const dotsContainer = document.getElementById('showcaseDots');
+            if (!track) return;
+            
+            if (!items || items.length === 0) {
+                track.innerHTML = `<div class="showcase-page"><div class="showcase-grid"><div class="grid-span-2"><div class="showcase-card" style="background:#EEEEEC; display:flex; align-items:center; justify-content:center;"><span style="color:#9E9E9E;">Нет фото</span></div></div></div></div>`;
+                dotsContainer.innerHTML = '';
+                return;
+            }
+            
+            const pages = [];
+            for (let i = 0; i < items.length; i += 3) {
+                pages.push(items.slice(i, i + 3));
+            }
+            
+            track.innerHTML = pages.map((page, pageIndex) => `
+                <div class="showcase-page">
+                    <div class="animate-scale-in delay-${400 + pageIndex * 100}">
+                        <div class="showcase-grid">
+                            ${page.map((item, idx) => {
+                                if (idx === 0 && page.length >= 2) {
+                                    return `<div class="grid-span-2">
+                                        <div class="showcase-card" onclick="openProductLink('${item.link || ''}')">
+                                            <img src="${item.image_url}" alt="${item.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 600\'%3E%3Crect width=\'400\' height=\'600\' fill=\'%23DDDDD8\'/%3E%3C/svg%3E'">
+                                            <div class="showcase-overlay">
+                                                <p class="showcase-title">${item.title || ''}</p>
+                                                <p class="showcase-subtitle">${item.subtitle || ''}</p>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                                } else {
+                                    return `<div class="showcase-card" onclick="openProductLink('${item.link || ''}')">
+                                        <img src="${item.image_url}" alt="${item.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 300\'%3E%3Crect width=\'200\' height=\'300\' fill=\'%23EEEEEC\'/%3E%3C/svg%3E'">
+                                        ${item.title ? `<div class="showcase-overlay"><p class="showcase-title">${item.title}</p></div>` : ''}
+                                    </div>`;
+                                }
+                            }).join('')}
                         </div>
-                        
-                        <div class="onboarding-features">
-                            <div class="feature-card">
-                                <span class="material-symbols-outlined">bolt</span>
-                                <p>От 3 дней</p>
-                            </div>
-                            <div class="feature-card">
-                                <span class="material-symbols-outlined">verified_user</span>
-                                <p>Качество</p>
-                            </div>
-                        </div>
-                        
-                        <button class="onboarding-btn" onclick="closeOnboarding(this)">Понятно</button>
                     </div>
                 </div>
-            `;
-            document.body.appendChild(modal);
-            document.body.style.overflow = 'hidden';
-        }
-        
-        window.closeOnboarding = function(btn) {
-            const modal = btn.closest('.modal-overlay');
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.remove();
-                document.body.style.overflow = '';
-            }, 200);
-        }
-        
-        // ==================== ORDER FORM MODAL ====================
-        window.openNewOrderModal = function() {
-            const modal = document.createElement('div');
-            modal.className = 'modal-overlay';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-handle"></div>
-                    <div class="modal-padding">
-                        <h1 class="modal-title">Новый заказ</h1>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Ссылка на товар <span>*</span></label>
-                            <input type="url" id="orderLink" class="form-input" placeholder="Вставьте ссылку с площадки">
-                            <div id="linkError" class="error-text" style="display: none;"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Цена на площадке <span>*</span></label>
-                            <div class="price-wrapper">
-                                <input type="number" id="orderPrice" class="form-input" placeholder="0" step="any">
-                                <span class="price-currency">¥</span>
-                            </div>
-                            <div id="priceError" class="error-text" style="display: none;"></div>
-                            <div class="total-hint" id="totalHint">≈ $0</div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Размер</label>
-                            <input type="text" id="orderSize" class="form-input" placeholder="Например: 42.5 EU">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Комментарий</label>
-                            <textarea id="orderComment" class="form-input" rows="3" placeholder="Цвет, особые пожелания и тд" style="resize: none;"></textarea>
-                        </div>
-                        
-                        <button class="submit-btn" id="submitOrderBtn">
-                            <span class="material-symbols-outlined">send</span>
-                            Отправить заказ
-                        </button>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            document.body.style.overflow = 'hidden';
+            `).join('');
             
-            // Add event listeners
-            const priceInput = document.getElementById('orderPrice');
-            const linkInput = document.getElementById('orderLink');
-            const submitBtn = document.getElementById('submitOrderBtn');
+            dotsContainer.innerHTML = pages.map((_, i) => `<button class="showcase-dot ${i === 0 ? 'active' : ''}" onclick="goToShowcase(${i})" style="width: 8px; height: 8px; border-radius: 9999px; padding: 0; background: ${i === 0 ? '#1A1A1A' : '#DDDDD8'}; border: none; cursor: pointer;"></button>`).join('');
             
-            const updateTotalHint = () => {
-                const price = parseFloat(priceInput.value) || 0;
-                const total = Math.ceil(price / RATE + COMMISSION);
-                document.getElementById('totalHint').innerHTML = `≈ $${total.toFixed(2)}`;
-            };
-            
-            priceInput.addEventListener('input', updateTotalHint);
-            
-            const validateAndSubmit = () => {
-                const link = linkInput.value.trim();
-                const price = parseFloat(priceInput.value);
-                let isValid = true;
-                
-                document.getElementById('linkError').style.display = 'none';
-                document.getElementById('priceError').style.display = 'none';
-                
-                if (!link) {
-                    document.getElementById('linkError').textContent = 'Вставьте ссылку на товар';
-                    document.getElementById('linkError').style.display = 'block';
-                    isValid = false;
-                } else if (!link.startsWith('http')) {
-                    document.getElementById('linkError').textContent = 'Введите корректную ссылку (начинается с http:// или https://)';
-                    document.getElementById('linkError').style.display = 'block';
-                    isValid = false;
-                }
-                
-                if (isNaN(price) || price <= 0) {
-                    document.getElementById('priceError').textContent = 'Укажите корректную цену';
-                    document.getElementById('priceError').style.display = 'block';
-                    isValid = false;
-                }
-                
-                if (!isValid) return;
-                
-                const size = document.getElementById('orderSize').value;
-                const comment = document.getElementById('orderComment').value;
-                const totalAmount = Math.ceil(price / RATE + COMMISSION);
-                
-                const orders = JSON.parse(localStorage.getItem('tc_orders') || '[]');
-                const newOrder = {
-                    id: Date.now(),
-                    title: 'Новый заказ',
-                    date: new Date().toISOString(),
-                    amount: totalAmount,
-                    status: 'Оформлен',
-                    link: link,
-                    price: price,
-                    size: size || '',
-                    comment: comment || ''
+            const showcaseScroll = document.getElementById('showcaseScroll');
+            if (showcaseScroll) {
+                showcaseScroll.onscroll = () => {
+                    const pageWidth = showcaseScroll.clientWidth;
+                    const current = Math.round(showcaseScroll.scrollLeft / pageWidth);
+                    document.querySelectorAll('.showcase-dot').forEach((dot, i) => {
+                        dot.style.background = i === current ? '#1A1A1A' : '#DDDDD8';
+                    });
                 };
-                orders.unshift(newOrder);
-                localStorage.setItem('tc_orders', JSON.stringify(orders));
-                
-                modal.remove();
-                document.body.style.overflow = '';
-                renderOrders();
-                switchTab('orders');
-                showToast('Заявка отправлена! Менеджер свяжется с вами');
-            };
-            
-            submitBtn.addEventListener('click', validateAndSubmit);
-            
-            // Close on backdrop click
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.remove();
-                    document.body.style.overflow = '';
-                }
-            });
+            }
         }
         
-        // ==================== RENDER FUNCTIONS ====================
-        function renderReviews() {
-            const container = document.getElementById('reviewsTrack');
-            if (!container) return;
-            container.innerHTML = reviews.map(r => `
-                <div class="review-card">
-                    <div>
-                        <div class="review-header">
-                            <div class="review-stars">
-                                ${Array(5).fill(0).map((_, i) => `<span class="material-symbols-outlined ${i < r.rating ? 'filled' : ''}" style="color: ${i < r.rating ? '#1A1A1A' : '#DDDDD8'};">star</span>`).join('')}
+        window.goToShowcase = function(index) {
+            const container = document.getElementById('showcaseScroll');
+            if (container) {
+                container.scrollTo({ left: index * container.clientWidth, behavior: 'smooth' });
+            }
+        };
+        
+        window.openProductLink = function(link) {
+            if (link) window.open(link, '_blank');
+            else alert('Товар\n\nЗдесь будет страница с подробной информацией.');
+        };
+        
+        async function loadReviews() {
+            try {
+                const response = await fetch('/admin/api/get_reviews.php');
+                const data = await response.json();
+                if (data.success && data.reviews) {
+                    const container = document.getElementById('reviewsTrack');
+                    if (!container) return;
+                    container.innerHTML = data.reviews.map(r => `
+                        <div class="review-card">
+                            <div>
+                                <div class="review-header">
+                                    <div class="review-stars">${Array(5).fill(0).map((_, i) => `<span class="material-symbols-outlined ${i < r.rating ? 'filled' : ''}" style="color: ${i < r.rating ? '#1A1A1A' : '#DDDDD8'};">star</span>`).join('')}</div>
+                                    <span class="review-date">${formatDate(r.created_at)}</span>
+                                </div>
+                                <p class="review-text">${r.text || ''}</p>
                             </div>
-                            <span class="review-date">${formatDate(r.date)}</span>
+                            <p class="review-author">${r.author}</p>
                         </div>
-                        <p class="review-text">${r.text}</p>
-                    </div>
-                    <p class="review-author">${r.author}</p>
-                </div>
-            `).join('');
+                    `).join('');
+                }
+            } catch(e) { console.error('Reviews load error:', e); }
         }
         
-        function renderFAQ() {
-            const container = document.getElementById('faqContainer');
-            if (!container) return;
-            container.innerHTML = faqData.map((item, index) => `
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(${index})">
-                        <span class="faq-question-text">${item.q}</span>
-                        <span class="material-symbols-outlined faq-icon" id="faqIcon${index}">expand_more</span>
-                    </button>
-                    <div class="faq-answer" id="faqAnswer${index}">
-                        <div class="faq-answer-text">${item.a}</div>
-                    </div>
-                </div>
-            `).join('');
+        async function loadFAQ() {
+            try {
+                const response = await fetch('/admin/api/get_faq.php');
+                const data = await response.json();
+                if (data.success && data.faq) {
+                    const container = document.getElementById('faqContainer');
+                    if (!container) return;
+                    container.innerHTML = data.faq.map((item, index) => `
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(${index})">
+                                <span class="faq-question-text">${item.question}</span>
+                                <span class="material-symbols-outlined faq-icon" id="faqIcon${index}">expand_more</span>
+                            </button>
+                            <div class="faq-answer" id="faqAnswer${index}">
+                                <div class="faq-answer-text">${item.answer}</div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch(e) { console.error('FAQ load error:', e); }
         }
         
         window.toggleFaq = function(index) {
@@ -1554,210 +1184,210 @@
                 answer.classList.add('open');
                 icon.classList.add('open');
             }
-        }
+        };
         
-        function renderOrders() {
-            const orders = JSON.parse(localStorage.getItem('tc_orders') || '[]');
-            const container = document.getElementById('ordersList');
-            const noOrdersMsg = document.getElementById('noOrdersMessage');
-            if (!container) return;
-            
-            if (orders.length === 0) {
-                container.innerHTML = '';
-                if (noOrdersMsg) noOrdersMsg.style.display = 'flex';
-                return;
-            }
-            
-            if (noOrdersMsg) noOrdersMsg.style.display = 'none';
-            container.innerHTML = orders.map(order => `
-                <div class="order-card">
-                    <div class="flex gap-3">
-                        <div class="shrink-0 rounded-2xl overflow-hidden" style="width: 56px; height: 56px; background: #F5F5F3; display: flex; align-items: center; justify-content: center;">
-                            <span class="material-symbols-outlined" style="font-size: 24px; color: #9E9E9E;">image</span>
-                        </div>
-                        <div class="flex-1">
-                            <p class="uppercase text-xs font-bold" style="letter-spacing: 0.1em; color: #9E9E9E;">Заказ #${order.id}</p>
-                            <p class="text-base font-bold" style="color: #1A1A1A;">${order.title || 'Новый заказ'}</p>
-                            <p class="text-xs mt-1" style="color: #6B6B6B;">${formatDate(order.date)}</p>
-                            <div class="mt-2 inline-flex items-center rounded-full px-3 py-1 text-xs font-bold" style="background: #E8F5E9; color: #2E7D32;">
-                                ${order.status || 'Оформлен'}
+        async function loadOrders() {
+            try {
+                const response = await fetch('/admin/api/get_orders.php');
+                const data = await response.json();
+                const container = document.getElementById('ordersList');
+                const noOrdersMsg = document.getElementById('noOrdersMessage');
+                if (!container) return;
+                if (!data.success || data.orders.length === 0) {
+                    container.innerHTML = '';
+                    if (noOrdersMsg) noOrdersMsg.style.display = 'flex';
+                    return;
+                }
+                if (noOrdersMsg) noOrdersMsg.style.display = 'none';
+                container.innerHTML = data.orders.map(order => `
+                    <div class="order-card" style="background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.06);">
+                        <div class="flex gap-3">
+                            <div class="shrink-0 rounded-2xl overflow-hidden" style="width: 56px; height: 56px; background: #F5F5F3; display: flex; align-items: center; justify-content: center;">
+                                <span class="material-symbols-outlined" style="font-size: 24px; color: #9E9E9E;">image</span>
+                            </div>
+                            <div class="flex-1">
+                                <p class="uppercase text-xs font-bold" style="letter-spacing: 0.1em; color: #9E9E9E;">Заказ #${order.id}</p>
+                                <p class="text-base font-bold" style="color: #1A1A1A;">${order.title || 'Новый заказ'}</p>
+                                <p class="text-xs mt-1" style="color: #6B6B6B;">${formatDate(order.created_at)}</p>
+                                <div class="mt-2 inline-flex items-center rounded-full px-3 py-1 text-xs font-bold" style="background: ${order.status === 'completed' ? '#E8F5E9' : order.status === 'cancelled' ? '#FFEBEE' : '#FFF3E0'}; color: ${order.status === 'completed' ? '#2E7D32' : order.status === 'cancelled' ? '#C62828' : '#E65100'}">
+                                    ${order.status === 'new' ? 'Новый' : order.status === 'at_warehouse' ? 'На складе' : order.status === 'in_delivery' ? 'В доставке' : order.status === 'arrived' ? 'Прибыл' : order.status === 'completed' ? 'Завершён' : order.status === 'cancelled' ? 'Отменён' : order.status}
+                                </div>
                             </div>
                         </div>
+                        <div class="flex items-center justify-between mt-4 pt-4" style="border-top: 1px solid #F5F5F3;">
+                            <p class="font-extrabold text-lg" style="color: #1A1A1A;">$${order.amount}</p>
+                            <span class="rounded-xl text-sm font-bold px-4 py-2" style="background: #F5F5F3; color: #1A1A1A; cursor: pointer;" onclick="viewOrderDetails(${order.id})">Детали</span>
+                        </div>
                     </div>
-                    <div class="flex items-center justify-between mt-4 pt-4" style="border-top: 1px solid #F5F5F3;">
-                        <p class="font-extrabold text-lg" style="color: #1A1A1A;">$${order.amount}</p>
-                        <span class="rounded-xl text-sm font-bold px-4 py-2" style="background: #F5F5F3; color: #1A1A1A; cursor: pointer;" onclick="viewOrderDetails(${order.id})">Детали</span>
-                    </div>
-                </div>
-            `).join('');
+                `).join('');
+            } catch(e) { console.error('Orders load error:', e); }
         }
         
         window.viewOrderDetails = function(id) {
-            const orders = JSON.parse(localStorage.getItem('tc_orders') || '[]');
-            const order = orders.find(o => o.id === id);
-            if (order) {
-                alert(`Заказ #${order.id}\nСтатус: ${order.status}\nСумма: $${order.amount}\nСсылка: ${order.link}\nРазмер: ${order.size || 'не указан'}\nКомментарий: ${order.comment || 'нет'}`);
-            }
-        }
+            alert(`Заказ #${id}\n\nДля просмотра деталей войдите в админ-панель.\n\nДоступ: /admin/\nПароль: admin123`);
+        };
         
-        // ==================== TAB MANAGEMENT ====================
         window.switchTab = function(tab) {
             currentTab = tab;
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 const svg = btn.querySelector('svg');
                 if (btn.dataset.tab === tab) {
-                    if (svg) {
-                        svg.style.stroke = '#FFFFFF';
-                        svg.style.fill = '#FFFFFF';
-                    }
+                    if (svg) { svg.style.stroke = '#FFFFFF'; svg.style.fill = '#FFFFFF'; }
                     btn.classList.add('nav-btn-active');
                 } else {
-                    if (svg) {
-                        svg.style.stroke = '#A0A0A0';
-                        svg.style.fill = '#A0A0A0';
-                    }
+                    if (svg) { svg.style.stroke = '#A0A0A0'; svg.style.fill = '#A0A0A0'; }
                     btn.classList.remove('nav-btn-active');
                 }
             });
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             const activeTab = document.getElementById(`tab-${tab}`);
             if (activeTab) activeTab.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        };
         
-        // ==================== CALCULATOR ====================
         window.updateTotal = function() {
             const price = parseFloat(document.getElementById('priceInput').value) || 0;
             const total = Math.ceil(price / RATE + COMMISSION);
             document.getElementById('totalPrice').innerText = `$${total.toFixed(2)}`;
-        }
+        };
         
-        // ==================== MARKETPLACE FUNCTIONS ====================
         window.openMarketplace = function(marketplace) {
             const names = { poizon: 'Poizon', '95': '95', goofish: 'GooFish', taobao: 'Taobao', pinduoduo: 'Pinduoduo' };
             alert(`Открыть ${names[marketplace] || marketplace}\n\nЗдесь будет страница с подробной информацией о маркетплейсе и инструкцией по заказу.`);
-        }
+        };
         
         window.showAllMarketplaces = function() {
             alert('Все маркетплейсы\n\n• Poizon — маркетплейс оригинальной одежды\n• 95 — б/у и уценённые товары\n• GooFish — китайский Kufar\n• Taobao — крупнейший маркетплейс\n• Pinduoduo — групповые покупки');
-        }
+        };
         
-        window.openProduct = function() {
-            alert('Открыть товар\n\nЗдесь будет страница с подробной информацией о товаре.');
-        }
-        
-        window.contactManager = function() {
-            alert('📱 Связаться с менеджером\n\nTelegram: @snkr_culture\n\nНапишите нам в Telegram для консультации и оформления заказа.');
-        }
+        window.contactManager = function() { alert('📱 Связаться с менеджером\n\nTelegram: @realstyle\n\nНапишите нам в Telegram для консультации и оформления заказа.'); };
         
         window.scrollMarketplace = function(direction) {
             const container = document.getElementById('marketplaceScroll');
-            if (container) {
-                container.scrollBy({ left: direction * container.clientWidth, behavior: 'smooth' });
-            }
-        }
+            if (container) container.scrollBy({ left: direction * container.clientWidth, behavior: 'smooth' });
+        };
         
-        window.goToShowcase = function(index) {
-            const container = document.getElementById('showcaseScroll');
-            if (container) {
-                container.scrollTo({ left: index * container.clientWidth, behavior: 'smooth' });
-            }
-            document.querySelectorAll('.showcase-dot').forEach((dot, i) => {
-                dot.style.background = i === index ? '#1A1A1A' : '#DDDDD8';
-            });
-        }
-        
-        // ==================== NOTIFICATIONS ====================
-        function toggleNotifications() {
-            const dropdown = document.getElementById('notificationsDropdown');
-            if (notificationsOpen) {
-                dropdown.style.display = 'none';
-                notificationsOpen = false;
-            } else {
-                const notifications = [
-                    { title: "Заказ #2026-0325-001", text: "Посылка в пути", icon: "flight", date: new Date().toISOString(), unread: true },
-                    { title: "Заказ #2026-0320-003", text: "Готов к выдаче", icon: "check_circle", date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), unread: true },
-                    { title: "Заказ #2026-0324-002", text: "Заказ задерживается", icon: "warning", date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), unread: false }
-                ];
-                const unreadCount = notifications.filter(n => n.unread).length;
-                document.getElementById('notificationBadge').style.display = unreadCount > 0 ? 'block' : 'none';
-                
-                dropdown.innerHTML = `
-                    <div class="flex items-center justify-between px-4 py-3" style="border-bottom: 1px solid #F5F5F3;">
-                        <span style="font-size: 15px; font-weight: 600;">Уведомления</span>
-                        <button onclick="clearNotifications()" style="font-size: 13px; color: #9E9E9E; background: none; border: none;">Очистить</button>
+        window.openNewOrderModal = function() {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-handle"></div>
+                    <div class="modal-padding">
+                        <h1 class="modal-title">Новый заказ</h1>
+                        <div class="form-group"><label class="form-label">Ссылка на товар <span>*</span></label><input type="url" id="orderLink" class="form-input" placeholder="Вставьте ссылку с площадки"><div id="linkError" class="error-text"></div></div>
+                        <div class="form-group"><label class="form-label">Цена на площадке <span>*</span></label><div class="price-wrapper"><input type="number" id="orderPrice" class="form-input" placeholder="0" step="any"><span class="price-currency">¥</span></div><div id="priceError" class="error-text"></div><div class="total-hint" id="totalHint">≈ $0</div></div>
+                        <div class="form-group"><label class="form-label">Размер</label><input type="text" id="orderSize" class="form-input" placeholder="Например: 42.5 EU"></div>
+                        <div class="form-group"><label class="form-label">Комментарий</label><textarea id="orderComment" class="form-input" rows="3" placeholder="Цвет, особые пожелания и тд" style="resize: none;"></textarea></div>
+                        <button class="submit-btn" id="submitOrderBtn"><span class="material-symbols-outlined">send</span>Отправить заказ</button>
                     </div>
-                    ${notifications.map(n => `
-                        <div class="notification-item ${n.unread ? 'notification-unread' : ''}" onclick="markAsRead(this)">
-                            <div class="notification-icon" style="background: ${n.icon === 'warning' ? '#FFF3E0' : n.icon === 'flight' ? '#E3F2FD' : '#E8F5E9'}">
-                                <span class="material-symbols-outlined" style="font-size: 16px; color: ${n.icon === 'warning' ? '#E65100' : n.icon === 'flight' ? '#1565C0' : '#2E7D32'}">${n.icon}</span>
-                            </div>
-                            <div class="flex-1">
-                                <p class="notification-title">${n.title}</p>
-                                <p class="notification-text">${n.text}</p>
-                                <p class="notification-date">${formatDate(n.date)}</p>
-                            </div>
-                            ${n.unread ? '<div style="width: 6px; height: 6px; background: #C62828; border-radius: 9999px; margin-top: 8px;"></div>' : ''}
-                        </div>
-                    `).join('')}
-                `;
-                dropdown.style.display = 'block';
-                notificationsOpen = true;
-            }
-        }
-        
-        window.clearNotifications = function() {
-            const dropdown = document.getElementById('notificationsDropdown');
-            dropdown.innerHTML = `
-                <div class="flex items-center justify-between px-4 py-3" style="border-bottom: 1px solid #F5F5F3;">
-                    <span style="font-size: 15px; font-weight: 600;">Уведомления</span>
-                    <button onclick="clearNotifications()" style="font-size: 13px; color: #9E9E9E; background: none; border: none;">Очистить</button>
-                </div>
-                <div class="flex flex-col items-center py-8 text-center">
-                    <span class="material-symbols-outlined mb-2" style="font-size: 32px; color: #9E9E9E;">notifications_none</span>
-                    <p style="font-size: 14px; color: #9E9E9E;">Пока нет уведомлений</p>
                 </div>
             `;
-            document.getElementById('notificationBadge').style.display = 'none';
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+            
+            const priceInput = document.getElementById('orderPrice');
+            const linkInput = document.getElementById('orderLink');
+            const submitBtn = document.getElementById('submitOrderBtn');
+            
+            const updateTotalHint = () => {
+                const price = parseFloat(priceInput.value) || 0;
+                const total = Math.ceil(price / RATE + COMMISSION);
+                document.getElementById('totalHint').innerHTML = `≈ $${total.toFixed(2)}`;
+            };
+            priceInput.addEventListener('input', updateTotalHint);
+            
+            const validateAndSubmit = async () => {
+                const link = linkInput.value.trim();
+                const price = parseFloat(priceInput.value);
+                let isValid = true;
+                document.getElementById('linkError').style.display = 'none';
+                document.getElementById('priceError').style.display = 'none';
+                if (!link) { document.getElementById('linkError').textContent = 'Вставьте ссылку на товар'; document.getElementById('linkError').style.display = 'block'; isValid = false; }
+                else if (!link.startsWith('http')) { document.getElementById('linkError').textContent = 'Введите корректную ссылку'; document.getElementById('linkError').style.display = 'block'; isValid = false; }
+                if (isNaN(price) || price <= 0) { document.getElementById('priceError').textContent = 'Укажите корректную цену'; document.getElementById('priceError').style.display = 'block'; isValid = false; }
+                if (!isValid) return;
+                
+                const size = document.getElementById('orderSize').value;
+                const comment = document.getElementById('orderComment').value;
+                const totalAmount = Math.ceil(price / RATE + COMMISSION);
+                
+                try {
+                    const response = await fetch('/admin/api/create_order.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ link, price_cny: price, size, comment, amount: totalAmount })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        modal.remove();
+                        document.body.style.overflow = '';
+                        loadOrders();
+                        switchTab('orders');
+                        showToast('Заявка отправлена! Менеджер свяжется с вами');
+                    } else {
+                        showToast(result.error || 'Ошибка отправки', true);
+                    }
+                } catch(e) {
+                    showToast('Ошибка соединения', true);
+                }
+            };
+            submitBtn.addEventListener('click', validateAndSubmit);
+            modal.addEventListener('click', (e) => { if (e.target === modal) { modal.remove(); document.body.style.overflow = ''; } });
+        };
+        
+        function showOnboarding() {
+            if (localStorage.getItem('rs_onboarding_seen')) return;
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-handle"></div>
+                    <div class="modal-padding">
+                        <h1 class="modal-title">Добро пожаловать в REALSTYLE</h1>
+                        <p class="text-center text-sm" style="color: #6B6B6B; margin-bottom: 24px;">Ваш персональный помощник в мире товаров из Китая</p>
+                        <div class="onboarding-steps">
+                            <div class="onboarding-step"><div class="onboarding-step-num">1</div><div><div class="onboarding-step-title">Выбираете товар</div><div class="onboarding-step-desc">Выберите товар на одной из доступных площадок и сохраните ссылку</div></div></div>
+                            <div class="onboarding-step"><div class="onboarding-step-num">2</div><div><div class="onboarding-step-title">Оформляете заказ</div><div class="onboarding-step-desc">Нажмите «+» в приложении, вставьте ссылку на товар и укажите нужные параметры</div></div></div>
+                            <div class="onboarding-step"><div class="onboarding-step-num">3</div><div><div class="onboarding-step-title">Доставляем</div><div class="onboarding-step-desc">Отправляем заказы быстрой авиадоставкой в Беларусь</div></div></div>
+                            <div class="onboarding-step"><div class="onboarding-step-num">4</div><div><div class="onboarding-step-title">Получаете заказ</div><div class="onboarding-step-desc">Получаете уведомление и забираете заказ</div></div></div>
+                        </div>
+                        <div class="onboarding-features"><div class="feature-card"><span class="material-symbols-outlined">bolt</span><p>От 3 дней</p></div><div class="feature-card"><span class="material-symbols-outlined">verified_user</span><p>Качество</p></div></div>
+                        <button class="onboarding-btn" onclick="closeOnboarding(this)">Понятно</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+            localStorage.setItem('rs_onboarding_seen', 'true');
         }
         
-        window.markAsRead = function(element) {
-            element.classList.remove('notification-unread');
-            const unreadDots = document.querySelectorAll('.notification-unread');
-            document.getElementById('notificationBadge').style.display = unreadDots.length > 0 ? 'block' : 'none';
-        }
+        window.closeOnboarding = function(btn) {
+            const modal = btn.closest('.modal-overlay');
+            modal.style.opacity = '0';
+            setTimeout(() => { modal.remove(); document.body.style.overflow = ''; }, 200);
+        };
         
-        // ==================== SCROLL HANDLERS ====================
         let lastScroll = 0;
         const header = document.getElementById('header');
         const scrollTopBtn = document.getElementById('scrollTopBtn');
-        
         window.addEventListener('scroll', () => {
             const currentScroll = window.scrollY;
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
+            if (currentScroll > lastScroll && currentScroll > 100) header.style.transform = 'translateY(-100%)';
+            else header.style.transform = 'translateY(0)';
             lastScroll = currentScroll;
             scrollTopBtn.style.display = currentScroll > 500 ? 'flex' : 'none';
         });
         
-        const showcaseScroll = document.getElementById('showcaseScroll');
-        if (showcaseScroll) {
-            showcaseScroll.addEventListener('scroll', () => {
-                const pageWidth = showcaseScroll.clientWidth;
-                const scrollLeft = showcaseScroll.scrollLeft;
-                const current = Math.round(scrollLeft / pageWidth);
-                document.querySelectorAll('.showcase-dot').forEach((dot, i) => {
-                    dot.style.background = i === current ? '#1A1A1A' : '#DDDDD8';
-                });
-            });
-        }
-        
-        // Close notifications on outside click
+        document.getElementById('notificationBtn').addEventListener('click', function() {
+            const dropdown = document.getElementById('notificationsDropdown');
+            if (notificationsOpen) { dropdown.style.display = 'none'; notificationsOpen = false; }
+            else {
+                dropdown.innerHTML = `<div class="flex items-center justify-between px-4 py-3" style="border-bottom:1px solid #F5F5F3;"><span style="font-size:15px;font-weight:600;">Уведомления</span></div><div class="flex flex-col items-center py-8 text-center"><span class="material-symbols-outlined mb-2" style="font-size:32px;color:#9E9E9E;">notifications_none</span><p style="font-size:14px;color:#9E9E9E;">Пока нет уведомлений</p></div>`;
+                dropdown.style.display = 'block';
+                notificationsOpen = true;
+            }
+        });
         document.addEventListener('click', (e) => {
             const dropdown = document.getElementById('notificationsDropdown');
             const btn = document.getElementById('notificationBtn');
@@ -1767,19 +1397,13 @@
             }
         });
         
-        // ==================== INITIALIZATION ====================
-        document.getElementById('notificationBtn').addEventListener('click', toggleNotifications);
-        renderReviews();
-        renderFAQ();
-        renderOrders();
+        loadGallery();
+        loadReviews();
+        loadFAQ();
+        loadOrders();
         updateTotal();
         switchTab('stores');
-        
-        // Show onboarding on first visit
-        if (!localStorage.getItem('tc_onboarding_seen')) {
-            setTimeout(showOnboarding, 500);
-            localStorage.setItem('tc_onboarding_seen', 'true');
-        }
+        setTimeout(showOnboarding, 500);
     </script>
 </body>
 </html>
