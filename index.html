@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TerrorChina — Заказ товаров из Китая</title>
+    <meta name="description" content="Заказ товаров из Китая с быстрой доставкой в Беларусь">
+    <meta name="theme-color" content="#FAFAF8">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito Sans', system-ui, sans-serif;
+            background: #FAFAF8;
+            color: #1A1A1A;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Utils */
+        .min-h-screen { min-height: 100vh; }
+        .tc-shell { width: min(100%, 448px); margin: 0 auto; }
+        .tc-nav-page { padding-bottom: calc(136px + env(safe-area-inset-bottom, 0px)); }
+        .px-6 { padding-left: 24px; padding-right: 24px; }
+        .pt-\[80px\] { padding-top: 80px; }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: #FAFAF8;
+            transition: transform 0.3s;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            max-width: 448px;
+            margin: 0 auto;
+        }
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 9999px;
+            background: #1A1A1A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .avatar span { color: #fff; font-size: 18px; font-weight: 700; }
+        .greeting-label { font-size: 11px; letter-spacing: 0.1em; color: #9E9E9E; text-transform: uppercase; }
+        .greeting-name { font-size: 20px; font-weight: 600; color: #1A1A1A; line-height: 1.2; }
+        .notification-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            position: relative;
+        }
+        .notification-btn:active { transform: scale(0.95); background: #F5F5F3; }
+        .notification-badge {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 10px;
+            height: 10px;
+            background: #C62828;
+            border-radius: 9999px;
+            border: 2px solid #FAFAF8;
+            display: none;
+        }
+        
+        /* Marketplace header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            margin-bottom: 20px;
+        }
+        .section-title { font-size: 18px; font-weight: 700; color: #1A1A1A; }
+        .section-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1A1A1A;
+            background: none;
+            border: none;
+            padding: 8px;
+            margin: -8px;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        .section-link:active { opacity: 0.5; }
+        
+        /* Marketplace grid */
+        .marketplace-scroll {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            margin-left: -24px;
+            margin-right: -24px;
+            padding: 8px 0 4px;
+        }
+        .marketplace-scroll::-webkit-scrollbar { display: none; }
+        .marketplace-track { display: flex; }
+        .marketplace-page {
+            min-width: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            justify-content: center;
+        }
+        .marketplace-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 76px);
+            gap: 0 12px;
+            justify-items: center;
+            width: 340px;
+        }
+        .marketplace-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .marketplace-item:active { transform: scale(0.95); }
+        .marketplace-icon {
+            padding: 2.5px;
+            border-radius: 9999px;
+            background: conic-gradient(from 45deg, #F58529, #DD2A7B, #8134AF, #515BD4, #F58529);
+        }
+        .marketplace-icon-inner {
+            width: 64px;
+            height: 64px;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 3px solid #FAFAF8;
+            background: #EEEEEC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .marketplace-icon-inner img { width: 100%; height: 100%; object-fit: cover; }
+        .marketplace-name { font-size: 12px; font-weight: 600; color: #1A1A1A; text-align: center; }
+        
+        /* Scroll buttons */
+        .scroll-btn {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 8px;
+            height: 72px;
+            width: 28px;
+            z-index: 2;
+            border: none;
+            cursor: pointer;
+        }
+        .scroll-btn-left {
+            left: -2px;
+            background: linear-gradient(to right, #FAFAF8 40%, transparent);
+            border-radius: 0 8px 8px 0;
+        }
+        .scroll-btn-right {
+            right: -2px;
+            background: linear-gradient(to left, #FAFAF8 40%, transparent);
+            border-radius: 8px 0 0 8px;
+        }
+        .scroll-btn span { font-size: 18px; color: #9E9E9E; }
+        
+        /* Showcase */
+        .showcase-container {
+            margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .showcase-scroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+        .showcase-scroll::-webkit-scrollbar { display: none; }
+        .showcase-track { display: flex; }
+        .showcase-page {
+            min-width: 100%;
+            width: 100%;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 8px;
+            height: 420px;
+        }
+        .showcase-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #EEEEEC;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .showcase-card:active { transform: scale(0.98); }
+        .showcase-card img { width: 100%; height: 100%; object-fit: cover; }
+        .showcase-overlay {
+            position: absolute;
+            inset: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+            padding: 0 12px 12px;
+        }
+        .showcase-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: #fff;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .showcase-subtitle { font-size: 12px; color: rgba(255,255,255,0.8); }
+        .grid-span-2 { grid-area: 1 / 1 / 3; }
+        
+        /* Steps */
+        .steps-section { margin-top: 40px; }
+        .steps-title { font-size: 18px; font-weight: 700; margin-bottom: 24px; color: #1A1A1A; }
+        .step-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 9999px;
+            background: #1A1A1A;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-title { font-size: 16px; font-weight: 700; color: #1A1A1A; margin-bottom: 4px; }
+        .step-desc { font-size: 14px; color: #6B6B6B; line-height: 1.4; }
+        
+        /* Reviews */
+        .reviews-section { margin-top: 40px; }
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .rating-badge {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .rating-stars { font-size: 16px; color: #1A1A1A; }
+        .rating-score { font-size: 15px; font-weight: 600; color: #1A1A1A; }
+        .rating-count { font-size: 13px; color: #9E9E9E; margin-left: 2px; }
+        .reviews-scroll {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            cursor: grab;
+        }
+        .reviews-scroll:active { cursor: grabbing; }
+        .reviews-scroll::-webkit-scrollbar { display: none; }
+        .reviews-track {
+            display: flex;
+            gap: 12px;
+            padding-left: 4px;
+            padding-right: calc(50% - min(180px, 50% - 48px));
+        }
+        .review-card {
+            width: min(360px, calc(100vw - 96px));
+            scroll-snap-align: start;
+            background: #fff;
+            border: 1px solid #DDDDD8;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .review-card:active { transform: scale(0.98); }
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .review-stars { display: flex; gap: 2px; }
+        .review-stars span { font-size: 16px; }
+        .review-date { font-size: 12px; color: #9E9E9E; }
+        .review-text {
+            font-size: 14px;
+            color: #1A1A1A;
+            line-height: 1.5;
+            word-break: break-word;
+            margin-bottom: 12px;
+        }
+        .review-author {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-top: 12px;
+        }
+        
+        /* FAQ Styles - аккуратные карточки */
+        .faq-section { margin-top: 40px; }
+        .faq-title { font-size: 18px; font-weight: 700; margin-bottom: 24px; color: #1A1A1A; }
+        .faq-item {
+            background: #FFFFFF;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.15s;
+        }
+        .faq-question:active { background: #F5F5F3; }
+        .faq-question-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1A1A1A;
+            line-height: 1.4;
+            padding-right: 16px;
+        }
+        .faq-icon {
+            font-size: 20px;
+            color: #9E9E9E;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+        .faq-icon.open { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            padding: 0 20px;
+        }
+        .faq-answer.open {
+            max-height: 300px;
+            opacity: 1;
+            padding: 0 20px 16px 20px;
+        }
+        .faq-answer-text {
+            font-size: 14px;
+            color: #6B6B6B;
+            line-height: 1.5;
+            padding-top: 8px;
+            border-top: 1px solid #EEEEEC;
+            white-space: pre-line;
+        }
+        
+        /* Contact card */
+        .contact-card {
+            background: #F5F5F3;
+            border-radius: 16px;
+            text-align: center;
+            padding: 24px;
+            margin-top: 32px;
+            margin-bottom: 40px;
+        }
+        .contact-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+        .contact-card-text {
+            font-size: 14px;
+            color: #6B6B6B;
+            margin-bottom: 16px;
+        }
+        .contact-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #1A1A1A;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 9999px;
+            padding: 14px 0;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .contact-btn:active { transform: scale(0.97); }
+        .contact-btn .material-symbols-outlined { font-size: 20px; }
+        
+        /* Bottom navigation */
+        .bottom-nav {
+            position: fixed;
+            z-index: 50;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(calc(100vw - 32px), 520px);
+            bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        }
+        .nav-bg {
+            position: absolute;
+            left: -16px;
+            right: -16px;
+            pointer-events: none;
+            border-radius: 0 0 20px 20px;
+            top: 100%;
+            bottom: calc(-20px - env(safe-area-inset-bottom, 0px));
+            backdrop-filter: blur(12px);
+            background: rgba(250, 250, 248, 0.4);
+        }
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 9999px;
+            position: relative;
+            background: rgba(26, 26, 26, 0.65);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            padding: 17px 24px;
+        }
+        .nav-btn {
+            min-width: 48px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .nav-btn:active { transform: scale(0.9); }
+        .nav-btn-active svg { stroke: #fff !important; fill: #fff !important; }
+        .nav-btn svg { stroke: #A0A0A0; fill: #A0A0A0; transition: all 0.15s; }
+        .add-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 9999px;
+            background: transparent;
+            border: 1.5px solid rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .add-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.1); }
+        .add-btn svg { fill: #fff; }
+        
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            z-index: 60;
+            width: 44px;
+            height: 44px;
+            right: max(16px, calc((100vw - min(100vw, 448px)) / 2 + 16px));
+            bottom: calc(104px + env(safe-area-inset-bottom, 0px));
+            background: rgba(255,255,255,0.72);
+            color: rgba(26,26,26,0.84);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03);
+            backdrop-filter: blur(18px);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: none;
+        }
+        .scroll-top:active { transform: scale(0.95); background: rgba(255,255,255,0.9); }
+        
+        /* Notifications dropdown */
+        .notifications-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: min(285px, calc(75vw - 24px));
+            max-height: 400px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+            padding: 12px 0;
+            overflow-y: auto;
+            z-index: 100;
+            animation: dropdownIn 0.2s ease-out;
+            transform-origin: 100% 0;
+            display: none;
+        }
+        @keyframes dropdownIn {
+            from { opacity: 0; transform: scale(0.95) translateY(-8px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .notification-item {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .notification-item:hover { background: #F5F5F3; }
+        .notification-unread { background: #F5F5F3; }
+        .notification-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .notification-title { font-size: 12px; font-weight: 600; color: #1A1A1A; }
+        .notification-text { font-size: 12px; color: #6B6B6B; margin-top: 2px; }
+        .notification-date { font-size: 11px; color: #9E9E9E; margin-top: 2px; }
+        
+        /* Calculator */
+        .calc-input {
+            width: 100%;
+            background: #fff;
+            border: 1px solid #DDDDD8;
+            border-radius: 12px;
+            padding: 16px 60px 16px 24px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A1A1A;
+            outline: none;
+        }
+        .calc-input:focus { border-color: #1A1A1A; box-shadow: 0 0 0 2px rgba(26,26,26,0.1); }
+        .total-card {
+            background: #1A1A1A;
+            border-radius: 24px;
+            padding: 32px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            margin-top: 24px;
+        }
+        .total-card-bg {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            background: rgba(255,255,255,0.05);
+            filter: blur(48px);
+            right: -40px;
+            top: -40px;
+            border-radius: 9999px;
+        }
+        .info-card {
+            background: #F5F5F3;
+            border-radius: 20px;
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        /* Orders */
+        .order-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+        }
+        .empty-orders {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 64px 0;
+        }
+        .empty-icon {
+            width: 192px;
+            height: 192px;
+            background: #F5F5F3;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .empty-icon span { font-size: 64px; color: #9E9E9E; }
+        
+        /* Tabs */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeLeft {
+            from { opacity: 0; transform: translateX(-12px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes popUp {
+            from { opacity: 0; transform: translateY(16px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-up { animation: fadeUp 0.4s ease-out both; }
+        .animate-fade-left { animation: fadeLeft 0.4s ease-out both; }
+        .animate-pop-up { animation: popUp 0.4s ease-out both; }
+        .animate-scale-in { animation: scaleIn 0.5s ease-out both; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-280 { animation-delay: 280ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-360 { animation-delay: 360ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-440 { animation-delay: 440ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-520 { animation-delay: 520ms; }
+        
+        /* Material icons */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .gap-1 { gap: 4px; }
+        .gap-2 { gap: 8px; }
+        .gap-3 { gap: 12px; }
+        .gap-4 { gap: 16px; }
+        .flex-col { flex-direction: column; }
+        .mt-1 { margin-top: 4px; }
+        .mt-2 { margin-top: 8px; }
+        .mt-3 { margin-top: 12px; }
+        .mt-4 { margin-top: 16px; }
+        .mt-6 { margin-top: 24px; }
+        .mt-10 { margin-top: 40px; }
+        .mb-2 { margin-bottom: 8px; }
+        .mb-3 { margin-bottom: 12px; }
+        .mb-4 { margin-bottom: 16px; }
+        .mb-6 { margin-bottom: 24px; }
+        .text-center { text-align: center; }
+        .text-sm { font-size: 14px; }
+        .text-base { font-size: 16px; }
+        .text-lg { font-size: 18px; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .uppercase { text-transform: uppercase; }
+        .shrink-0 { flex-shrink: 0; }
+        .w-full { width: 100%; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-2xl { border-radius: 16px; }
+        .overflow-hidden { overflow: hidden; }
+        .object-cover { object-fit: cover; }
+        .cursor-pointer { cursor: pointer; }
+        .transition-all { transition: all 0.15s ease; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <main class="min-h-screen">
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="header-content">
+                <div class="flex items-center gap-3">
+                    <div class="avatar"><span>А</span></div>
+                    <div>
+                        <p class="greeting-label">TERRORCHINA</p>
+                        <p class="greeting-name">Привет, Алекс!</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <button class="notification-btn" id="notificationBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#6B6B6B">
+                            <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"></path>
+                        </svg>
+                        <div class="notification-badge" id="notificationBadge"></div>
+                    </button>
+                    <div id="notificationsDropdown" class="notifications-dropdown"></div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Tab: Marketplaces (Stores) -->
+        <div id="tab-stores" class="tab-content active">
+            <div class="tc-shell tc-nav-page pt-[80px] px-6">
+                <div class="section-header animate-fade-up delay-100">
+                    <h1 class="section-title">Marketplaces</h1>
+                    <button class="section-link" onclick="showAllMarketplaces()">Все</button>
+                </div>
+                
+                <div class="relative" style="margin-left: -24px; margin-right: -24px;">
+                    <div class="marketplace-scroll" id="marketplaceScroll">
+                        <div class="marketplace-track">
+                            <div class="marketplace-page">
+                                <div class="marketplace-grid">
+                                    <button class="marketplace-item animate-pop-up delay-200" onclick="openMarketplace('poizon')">
+                                        <div class="marketplace-icon">
+                                            <div class="marketplace-icon-inner">
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231A1A1A'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='12' font-weight='bold'%3EPOIZON%3C/text%3E%3C/svg%3E" alt="Poizon">
+                                            </div>
+                                        </div>
+                                        <span class="marketplace-name">Poizon</span>
+                                    </button>
+                                    <button class="marketplace-item animate-pop-up delay-280" onclick="openMarketplace('95')">
+                                        <div class="marketplace-icon">
+                                            <div class="marketplace-icon-inner">
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232D2D2D'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='16' font-weight='bold'%3E95%3C/text%3E%3C/svg%3E" alt="95">
+                                            </div>
+                                        </div>
+                                        <span class="marketplace-name">95</span>
+                                    </button>
+                                    <button class="marketplace-item animate-pop-up delay-360" onclick="openMarketplace('goofish')">
+                                        <div class="marketplace-icon">
+                                            <div class="marketplace-icon-inner">
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2337474F'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='10' font-weight='bold'%3EGOOFISH%3C/text%3E%3C/svg%3E" alt="GooFish">
+                                            </div>
+                                        </div>
+                                        <span class="marketplace-name">GooFish</span>
+                                    </button>
+                                    <button class="marketplace-item animate-pop-up delay-440" onclick="openMarketplace('taobao')">
+                                        <div class="marketplace-icon">
+                                            <div class="marketplace-icon-inner">
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23FF5000'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='10' font-weight='bold'%3ETAOBAO%3C/text%3E%3C/svg%3E" alt="Taobao">
+                                            </div>
+                                        </div>
+                                        <span class="marketplace-name">Taobao</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="marketplace-page">
+                                <div class="marketplace-grid">
+                                    <button class="marketplace-item animate-pop-up delay-520" onclick="openMarketplace('pinduoduo')">
+                                        <div class="marketplace-icon">
+                                            <div class="marketplace-icon-inner">
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23880E4F'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='8' font-weight='bold'%3EPINDUODUO%3C/text%3E%3C/svg%3E" alt="Pinduoduo">
+                                            </div>
+                                        </div>
+                                        <span class="marketplace-name">Pinduoduo</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="scroll-btn scroll-btn-right" onclick="scrollMarketplace(1)">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+                
+                <!-- Showcase -->
+                <div class="showcase-container">
+                    <div class="showcase-scroll" id="showcaseScroll">
+                        <div class="showcase-track">
+                            <div class="showcase-page">
+                                <div class="animate-scale-in delay-400">
+                                    <div class="showcase-grid">
+                                        <div class="grid-span-2">
+                                            <div class="showcase-card" onclick="openProduct()">
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect width='400' height='600' fill='%23DDDDD8'/%3E%3C/svg%3E" alt="China">
+                                                <div class="showcase-overlay">
+                                                    <p class="showcase-title">China</p>
+                                                    <p class="showcase-subtitle">SPRING SALE ?</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="showcase-card" onclick="openProduct()">
+                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Crect width='200' height='300' fill='%23E5E5E3'/%3E%3C/svg%3E" alt="">
+                                        </div>
+                                        <div class="showcase-card" onclick="openProduct()">
+                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Crect width='200' height='300' fill='%23EEEEEC'/%3E%3C/svg%3E" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-page">
+                                <div class="animate-scale-in delay-500">
+                                    <div class="showcase-grid">
+                                        <div class="showcase-card" onclick="openProduct()">
+                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Crect width='200' height='300' fill='%23D3D3D3'/%3E%3C/svg%3E" alt="">
+                                        </div>
+                                        <div class="grid-span-2">
+                                            <div class="showcase-card" onclick="openProduct()">
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect width='400' height='600' fill='%23BDBDBD'/%3E%3C/svg%3E" alt="Stone Island">
+                                                <div class="showcase-overlay">
+                                                    <p class="showcase-title">Stone Island <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 -960 960 960" width="14" fill="rgba(255,255,255,0.8)"><path d="M318-120q-82 0-140-58t-58-140q0-40 15-76t43-64l134-133 56 56-134 134q-17 17-25.5 38.5T200-318q0 49 34.5 83.5T318-200q23 0 45-8.5t39-25.5l133-134 57 57-134 133q-28 28-64 43t-76 15Zm79-220-57-57 223-223 57 57-223 223Zm251-28-56-57 134-133q17-17 25-38t8-44q0-50-34-85t-84-35q-23 0-44.5 8.5T558-726L425-592l-57-56 134-134q28-28 64-43t76-15q82 0 139.5 58T839-641q0 39-14.5 75T782-502L648-368Z"></path></svg></p>
+                                                    <p class="showcase-subtitle">Case iPhone</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="showcase-card" onclick="openProduct()">
+                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Crect width='200' height='300' fill='%23CACACA'/%3E%3C/svg%3E" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-3" style="gap: 8px;" id="showcaseDots">
+                        <button class="showcase-dot active" onclick="goToShowcase(0)" style="width: 8px; height: 8px; border-radius: 9999px; padding: 0; background: #1A1A1A; border: none; cursor: pointer;"></button>
+                        <button class="showcase-dot" onclick="goToShowcase(1)" style="width: 8px; height: 8px; border-radius: 9999px; padding: 0; background: #DDDDD8; border: none; cursor: pointer;"></button>
+                    </div>
+                </div>
+                
+                <!-- How it works -->
+                <div class="steps-section">
+                    <h2 class="steps-title animate-fade-up">Как это работает</h2>
+                    <div class="flex flex-col gap-4">
+                        <div class="step-item animate-fade-left delay-100">
+                            <div class="step-number">1</div>
+                            <div>
+                                <p class="step-title">Выбираете товар</p>
+                                <p class="step-desc">Выберите товар на одной из доступных в приложении площадок и сохраните ссылку</p>
+                            </div>
+                        </div>
+                        <div class="step-item animate-fade-left delay-200">
+                            <div class="step-number">2</div>
+                            <div>
+                                <p class="step-title">Оформляете заказ</p>
+                                <p class="step-desc">Нажмите «+» в приложении, вставьте ссылку на товар и укажите нужные параметры</p>
+                            </div>
+                        </div>
+                        <div class="step-item animate-fade-left delay-300">
+                            <div class="step-number">3</div>
+                            <div>
+                                <p class="step-title">Доставляем</p>
+                                <p class="step-desc">Отправляем заказы быстрой авиадоставкой в Беларусь</p>
+                            </div>
+                        </div>
+                        <div class="step-item animate-fade-left delay-400">
+                            <div class="step-number">4</div>
+                            <div>
+                                <p class="step-title">Получаете заказ</p>
+                                <p class="step-desc">Получаете уведомление и забираете заказ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reviews -->
+                <div class="reviews-section">
+                    <div class="reviews-header animate-fade-up">
+                        <h2 class="section-title">Отзывы</h2>
+                        <div class="rating-badge">
+                            <span class="material-symbols-outlined filled" style="font-size: 16px;">star</span>
+                            <span class="rating-score">5.0</span>
+                            <span class="rating-count">14 отзывов</span>
+                        </div>
+                    </div>
+                    <div class="reviews-scroll" id="reviewsScroll">
+                        <div class="reviews-track" id="reviewsTrack"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tab: Calculator -->
+        <div id="tab-calculator" class="tab-content">
+            <div class="tc-shell tc-nav-page pt-[80px] px-6">
+                <h1 class="section-title animate-fade-up" style="font-size: 32px; margin-top: 16px;">Калькулятор</h1>
+                
+                <div class="mt-6">
+                    <label class="text-sm font-semibold" style="color: #6B6B6B;">Цена на площадке (¥)</label>
+                    <div class="relative mt-2">
+                        <input type="number" id="priceInput" placeholder="0.00" class="calc-input" oninput="updateTotal()">
+                        <span class="absolute right-6 top-1/2 -translate-y-1/2 text-lg font-bold" style="color: #1A1A1A; opacity: 0.6;">¥</span>
+                    </div>
+                </div>
+                
+                <div class="total-card">
+                    <div class="total-card-bg"></div>
+                    <p class="text-sm" style="color: rgba(255,255,255,0.7);">Итого</p>
+                    <p class="text-3xl font-extrabold mt-1" id="totalPrice">$0.00</p>
+                    <div class="flex justify-between mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.1);">
+                        <span class="text-sm" style="color: rgba(255,255,255,0.5);">Доставка</span>
+                        <span class="text-sm" style="color: rgba(255,255,255,0.7);">от $15/кг</span>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <span class="material-symbols-outlined shrink-0" style="font-size: 18px; color: #6B6B6B;">info</span>
+                    <p class="text-xs leading-relaxed" style="color: #6B6B6B;">Стоимость доставки рассчитывается отдельно и зависит от категории товара, веса и упаковки.</p>
+                </div>
+                
+                <div class="info-card">
+                    <span class="material-symbols-outlined shrink-0" style="font-size: 18px; color: #6B6B6B;">info</span>
+                    <div style="flex: 1;">
+                        <p class="text-xs font-semibold mb-2" style="color: #1A1A1A;">Примеры</p>
+                        <div class="flex flex-col gap-1.5">
+                            <p class="text-xs" style="color: #6B6B6B;">iPhone 17 Pro Max — $30</p>
+                            <p class="text-xs" style="color: #6B6B6B;">Свитер Balenciaga (0,6 кг) — $8</p>
+                            <p class="text-xs" style="color: #6B6B6B;">Кроссовки New Balance (0,9 кг) — $15 без коробки, $30 с коробкой</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="contact-btn mt-6" onclick="contactManager()">
+                    <span class="material-symbols-outlined">chat</span>
+                    Связаться с менеджером
+                </button>
+            </div>
+        </div>
+        
+        <!-- Tab: FAQ -->
+        <div id="tab-faq" class="tab-content">
+            <div class="tc-shell tc-nav-page pt-[80px] px-6">
+                <h1 class="section-title animate-fade-up" style="font-size: 32px; margin-top: 16px;">Частые вопросы</h1>
+                <div class="faq-section" id="faqContainer"></div>
+                <div class="contact-card">
+                    <p class="contact-card-title">Не нашли ответ?</p>
+                    <p class="contact-card-text">Напишите менеджеру — поможем разобраться</p>
+                    <button class="contact-btn" onclick="contactManager()">
+                        <span class="material-symbols-outlined">chat</span>
+                        Связаться с менеджером
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tab: Orders -->
+        <div id="tab-orders" class="tab-content">
+            <div class="tc-shell tc-nav-page pt-[80px] px-6">
+                <div class="mt-4 mb-4">
+                    <h1 class="section-title animate-fade-up" style="font-size: 32px;">Ваши заказы</h1>
+                </div>
+                <div id="ordersList"></div>
+                <div id="noOrdersMessage" class="empty-orders">
+                    <div class="empty-icon">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-2" style="color: #1A1A1A;">У вас пока нет заказов</h2>
+                    <p class="text-sm" style="color: #6B6B6B;">Самое время сделать первый заказ из Китая</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll to top button -->
+        <button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            <span class="material-symbols-outlined">arrow_upward</span>
+        </button>
+        
+        <!-- Bottom navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-bg"></div>
+            <div class="nav-bar">
+                <button class="nav-btn" data-tab="stores" onclick="switchTab('stores')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A0A0A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="7" height="7" x="3" y="3" rx="1"></rect>
+                        <rect width="7" height="7" x="14" y="3" rx="1"></rect>
+                        <rect width="7" height="7" x="14" y="14" rx="1"></rect>
+                        <rect width="7" height="7" x="3" y="14" rx="1"></rect>
+                    </svg>
+                </button>
+                <button class="nav-btn" data-tab="orders" onclick="switchTab('orders')">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28" fill="#A0A0A0">
+                        <path d="M195-195q-35-35-35-85H60l18-80h113q17-19 40-29.5t49-10.5q26 0 49 10.5t40 29.5h167l84-360H182l4-17q6-28 27.5-45.5T264-800h456l-37 160h117l120 160-40 200h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85H400q0 50-35 85t-85 35q-50 0-85-35Zm442-245h193l4-21-74-99h-95l-28 120Zm-19-273 2-7-84 360 2-7 34-146 46-200ZM20-427l20-80h220l-20 80H20Zm80-146 20-80h260l-20 80H100Zm180 333q17 0 28.5-11.5T320-280q0-17-11.5-28.5T280-320q-17 0-28.5 11.5T240-280q0 17 11.5 28.5T280-240Zm400 0q17 0 28.5-11.5T720-280q0-17-11.5-28.5T680-320q-17 0-28.5 11.5T640-280q0 17 11.5 28.5T680-240Z"></path>
+                    </svg>
+                </button>
+                <button class="add-btn" onclick="openNewOrder()">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#FFFFFF">
+                        <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"></path>
+                    </svg>
+                </button>
+                <button class="nav-btn" data-tab="calculator" onclick="switchTab('calculator')">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28" fill="#A0A0A0">
+                        <path d="M480-40q-112 0-206-51T120-227v107H40v-240h240v80h-99q48 72 126.5 116T480-120q75 0 140.5-28.5t114-77q48.5-48.5 77-114T840-480h80q0 91-34.5 171T791-169q-60 60-140 94.5T480-40Zm-36-160v-52q-47-11-76.5-40.5T324-370l66-26q12 41 37.5 61.5T486-314q33 0 56.5-15.5T566-378q0-29-24.5-47T454-466q-59-21-86.5-50T340-592q0-41 28.5-74.5T446-710v-50h70v50q36 3 65.5 29t40.5 61l-64 26q-8-23-26-38.5T482-648q-35 0-53.5 15T410-592q0 26 23 41t83 35q72 26 96 61t24 77q0 29-10 51t-26.5 37.5Q583-274 561-264.5T514-250v50h-70ZM40-480q0-91 34.5-171T169-791q60-60 140-94.5T480-920q112 0 206 51t154 136v-107h80v240H680v-80h99q-48-72-126.5-116T480-840q-75 0-140.5 28.5t-114 77q-48.5 48.5-77 114T120-480H40Z"></path>
+                    </svg>
+                </button>
+                <button class="nav-btn" data-tab="faq" onclick="switchTab('faq')">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28" fill="#A0A0A0">
+                        <path d="M880-80 720-240H320q-33 0-56.5-23.5T240-320v-40h440q33 0 56.5-23.5T760-440v-280h40q33 0 56.5 23.5T880-640v560ZM160-473l47-47h393v-280H160v327ZM80-280v-520q0-33 23.5-56.5T160-880h440q33 0 56.5 23.5T680-800v280q0 33-23.5 56.5T600-440H240L80-280Zm80-240v-280 280Z"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </main>
+    
+    <script>
+        // ==================== DATA ====================
+        const reviews = [
+            { author: "Максим", rating: 5, text: "Всё чики-пики. Дядя Лёша делает ГРЯЗЬ. За такой сервис и Ляяяяяям Двести можно отдать. Ахаххах, если серьёзно: быстро согласовали, заказали — и уже сижу довольный с товаром на руках 🤝", date: "2026-05-16" },
+            { author: "Slava", rating: 5, text: "Все быстро и оперативно, без каких либо проблем, при необходимости помогут/подскажут/объяснят, автору 5 звезд", date: "2026-04-30" },
+            { author: "Vladislav", rating: 5, text: "Всё чётко и быстро, спасибо!", date: "2026-04-28" },
+            { author: "Артём", rating: 5, text: "Все быстро,четко,Лешка ювелир называйте", date: "2026-04-27" },
+            { author: "DeLaPablo", rating: 5, text: "Бомбовая пара 10/10, спасибо Леше. Уже заказываю 4 пару! Все четко!", date: "2026-04-20" }
+        ];
+        
+        const faqData = [
+            { q: "Как оформить заказ?", a: "Найдите понравившийся товар на одной из представленных площадок: Poizon, 95, GooFish или Taobao. Сохраните ссылку на выбранную позицию и оформите заказ прямо в приложении, указав нужные параметры. После оформления с вами свяжется менеджер, чтобы уточнить детали и согласовать оплату." },
+            { q: "Сколько стоит доставка?", a: "Стоимость доставки зависит от категории товара, веса и упаковки.\n\nЦены на авиадоставку популярных категорий:\n• ноутбук — $23/кг\n• телефон — $30 за 1 единицу\n• обувь без коробки — от $15/кг\n• обувь с коробкой — $30/кг\n• одежда — $14/кг\n\nПримеры:\n• кофта Stone Island — 0,4 кг ($5,4)\n• кроссовки Nike Dunk Low (38 EU) — 0,85 кг ($15)\n• кроссовки New Balance 2002R (46 EU) — 1,3 кг ($19,5)" },
+            { q: "Как отследить заказ?", a: "Статус заказа отображается во вкладке «Заказы» в приложении. При каждом изменении статуса вы также получите уведомление в Telegram." },
+            { q: "Какие способы оплаты?", a: "Оплатить заказ можно в USDT, переводом по СБП в RUB, а также наличными в BYN или USD." },
+            { q: "Через сколько я получу заказ?", a: "Срок получения заказа зависит от того, как быстро продавец отправит товар по Китаю до склада авиадоставки. На площадке Poizon ориентировочный срок доставки обычно указан справа от цены — чаще всего это 1–4 дня.\n\nПосле поступления на склад товар принимается, упаковывается и готовится к отправке в Беларусь. Обычно вылет из Китая происходит в понедельник, а прибытие в Беларусь — во вторник.\n\nНапример, если продавец оперативно отправил товар, и он поступил на склад вовремя, заказ может приехать в Беларусь уже через несколько дней." },
+            { q: "Можно ли заказать, если товара нет на площадке?", a: "Если нужного товара нет на одной из представленных площадок, вы можете связаться с менеджером в Telegram. Мы подскажем, можно ли найти его на другой платформе или предложим альтернативу." },
+            { q: "Когда нужно оплачивать заказ?", a: "После оформления заказа с вами свяжется менеджер, уточнит детали и сообщит порядок оплаты. Оплата производится после согласования всех нюансов по заказу." },
+            { q: "Можно ли отменить заказ после оформления?", a: "Если заказ ещё не выкуплен, возможность отмены обычно сохраняется. Если товар уже оплачен продавцу, отмена зависит от условий конкретной площадки и продавца." }
+        ];
+        
+        let currentTab = 'stores';
+        let notificationsOpen = false;
+        
+        // Format date
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const now = new Date();
+            const diff = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+            if (diff === 0) return "Сегодня";
+            if (diff === 1) return "Вчера";
+            if (diff < 7) return `${diff} дн. назад`;
+            if (diff < 30) return `${Math.floor(diff / 7)} нед. назад`;
+            return `${Math.floor(diff / 30)} мес. назад`;
+        }
+        
+        // Render reviews
+        function renderReviews() {
+            const container = document.getElementById('reviewsTrack');
+            if (!container) return;
+            container.innerHTML = reviews.map(r => `
+                <div class="review-card">
+                    <div>
+                        <div class="review-header">
+                            <div class="review-stars">
+                                ${Array(5).fill(0).map((_, i) => `<span class="material-symbols-outlined ${i < r.rating ? 'filled' : ''}" style="color: ${i < r.rating ? '#1A1A1A' : '#DDDDD8'};">star</span>`).join('')}
+                            </div>
+                            <span class="review-date">${formatDate(r.date)}</span>
+                        </div>
+                        <p class="review-text">${r.text}</p>
+                    </div>
+                    <p class="review-author">${r.author}</p>
+                </div>
+            `).join('');
+        }
+        
+        // Render FAQ - аккуратные карточки с анимацией
+        function renderFAQ() {
+            const container = document.getElementById('faqContainer');
+            if (!container) return;
+            
+            container.innerHTML = faqData.map((item, index) => `
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(${index})">
+                        <span class="faq-question-text">${item.q}</span>
+                        <span class="material-symbols-outlined faq-icon" id="faqIcon${index}">expand_more</span>
+                    </button>
+                    <div class="faq-answer" id="faqAnswer${index}">
+                        <div class="faq-answer-text">${item.a}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Toggle FAQ answer
+        window.toggleFaq = function(index) {
+            const answer = document.getElementById(`faqAnswer${index}`);
+            const icon = document.getElementById(`faqIcon${index}`);
+            
+            if (answer.classList.contains('open')) {
+                answer.classList.remove('open');
+                icon.classList.remove('open');
+            } else {
+                answer.classList.add('open');
+                icon.classList.add('open');
+            }
+        }
+        
+        // Render orders
+        function renderOrders() {
+            const orders = JSON.parse(localStorage.getItem('tc_orders') || '[]');
+            const container = document.getElementById('ordersList');
+            const noOrdersMsg = document.getElementById('noOrdersMessage');
+            
+            if (!container) return;
+            
+            if (orders.length === 0) {
+                container.innerHTML = '';
+                if (noOrdersMsg) noOrdersMsg.style.display = 'flex';
+                return;
+            }
+            
+            if (noOrdersMsg) noOrdersMsg.style.display = 'none';
+            container.innerHTML = orders.map(order => `
+                <div class="order-card">
+                    <div class="flex gap-3">
+                        <div class="shrink-0 rounded-2xl overflow-hidden" style="width: 56px; height: 56px; background: #F5F5F3; display: flex; align-items: center; justify-content: center;">
+                            <span class="material-symbols-outlined" style="font-size: 24px; color: #9E9E9E;">image</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="uppercase text-xs font-bold" style="letter-spacing: 0.1em; color: #9E9E9E;">Заказ #${order.id}</p>
+                            <p class="text-base font-bold" style="color: #1A1A1A;">${order.title || 'Новый заказ'}</p>
+                            <p class="text-xs mt-1" style="color: #6B6B6B;">${formatDate(order.date)}</p>
+                            <div class="mt-2 inline-flex items-center rounded-full px-3 py-1 text-xs font-bold" style="background: #E8F5E9; color: #2E7D32;">
+                                ${order.status || 'Оформлен'}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-4 pt-4" style="border-top: 1px solid #F5F5F3;">
+                        <p class="font-extrabold text-lg" style="color: #1A1A1A;">$${order.amount}</p>
+                        <span class="rounded-xl text-sm font-bold px-4 py-2" style="background: #F5F5F3; color: #1A1A1A; cursor: pointer;" onclick="viewOrderDetails(${order.id})">Детали</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        window.viewOrderDetails = function(id) {
+            const orders = JSON.parse(localStorage.getItem('tc_orders') || '[]');
+            const order = orders.find(o => o.id === id);
+            if (order) {
+                alert(`Заказ #${order.id}\nСтатус: ${order.status}\nСумма: $${order.amount}\nСсылка: ${order.link}\nРазмер: ${order.size || 'не указан'}\nКомментарий: ${order.comment || 'нет'}`);
+            }
+        }
+        
+        // Switch tab
+        window.switchTab = function(tab) {
+            currentTab = tab;
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                const svg = btn.querySelector('svg');
+                if (btn.dataset.tab === tab) {
+                    if (svg) {
+                        svg.style.stroke = '#FFFFFF';
+                        svg.style.fill = '#FFFFFF';
+                    }
+                    btn.classList.add('nav-btn-active');
+                } else {
+                    if (svg) {
+                        svg.style.stroke = '#A0A0A0';
+                        svg.style.fill = '#A0A0A0';
+                    }
+                    btn.classList.remove('nav-btn-active');
+                }
+            });
+            
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            const activeTab = document.getElementById(`tab-${tab}`);
+            if (activeTab) activeTab.classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Calculator
+        window.updateTotal = function() {
+            const price = parseFloat(document.getElementById('priceInput').value) || 0;
+            const rate = 6.7;
+            const commission = 30;
+            const total = Math.ceil(price / rate + commission);
+            document.getElementById('totalPrice').innerText = `$${total.toFixed(2)}`;
+        }
+        
+        // Open marketplace detail
+        window.openMarketplace = function(marketplace) {
+            const names = { poizon: 'Poizon', '95': '95', goofish: 'GooFish', taobao: 'Taobao', pinduoduo: 'Pinduoduo' };
+            alert(`Открыть ${names[marketplace] || marketplace}\n\nЗдесь будет страница с подробной информацией о маркетплейсе и инструкцией по заказу.`);
+        }
+        
+        window.showAllMarketplaces = function() {
+            alert('Все маркетплейсы\n\n• Poizon — маркетплейс оригинальной одежды\n• 95 — б/у и уценённые товары\n• GooFish — китайский Kufar\n• Taobao — крупнейший маркетплейс\n• Pinduoduo — групповые покупки');
+        }
+        
+        window.openProduct = function() {
+            alert('Открыть товар\n\nЗдесь будет страница с подробной информацией о товаре.');
+        }
+        
+        // Open new order form
+        window.openNewOrder = function() {
+            const link = prompt('Вставьте ссылку на товар с площадки:');
+            if (link && link.trim()) {
+                const price = prompt('Укажите цену на площадке (в юанях):');
+                if (price && !isNaN(parseFloat(price))) {
+                    const size = prompt('Размер (опционально):');
+                    const comment = prompt('Комментарий (цвет, особые пожелания):');
+                    
+                    const newOrder = {
+                        id: Date.now(),
+                        title: 'Новый заказ',
+                        date: new Date().toISOString(),
+                        amount: Math.ceil(parseFloat(price) / 6.7 + 30),
+                        status: 'Оформлен',
+                        link: link,
+                        price: price,
+                        size: size || '',
+                        comment: comment || ''
+                    };
+                    
+                    const existingOrders = JSON.parse(localStorage.getItem('tc_orders') || '[]');
+                    existingOrders.unshift(newOrder);
+                    localStorage.setItem('tc_orders', JSON.stringify(existingOrders));
+                    
+                    alert('✅ Заявка отправлена! Менеджер свяжется с вами в ближайшее время.');
+                    renderOrders();
+                    switchTab('orders');
+                } else {
+                    alert('Пожалуйста, укажите корректную цену');
+                }
+            }
+        }
+        
+        window.contactManager = function() {
+            alert('📱 Связаться с менеджером\n\nTelegram: @snkr_culture\n\nНапишите нам в Telegram для консультации и оформления заказа.');
+        }
+        
+        // Scroll marketplace
+        window.scrollMarketplace = function(direction) {
+            const container = document.getElementById('marketplaceScroll');
+            if (container) {
+                container.scrollBy({ left: direction * container.clientWidth, behavior: 'smooth' });
+            }
+        }
+        
+        // Go to showcase page
+        window.goToShowcase = function(index) {
+            const container = document.getElementById('showcaseScroll');
+            if (container) {
+                container.scrollTo({ left: index * container.clientWidth, behavior: 'smooth' });
+            }
+            document.querySelectorAll('.showcase-dot').forEach((dot, i) => {
+                dot.style.background = i === index ? '#1A1A1A' : '#DDDDD8';
+            });
+        }
+        
+        // Notifications
+        function toggleNotifications() {
+            const dropdown = document.getElementById('notificationsDropdown');
+            if (notificationsOpen) {
+                dropdown.style.display = 'none';
+                notificationsOpen = false;
+            } else {
+                const notifications = [
+                    { title: "Заказ #2026-0325-001", text: "Посылка в пути", icon: "flight", date: new Date().toISOString(), unread: true },
+                    { title: "Заказ #2026-0320-003", text: "Готов к выдаче", icon: "check_circle", date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), unread: true },
+                    { title: "Заказ #2026-0324-002", text: "Заказ задерживается", icon: "warning", date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), unread: false }
+                ];
+                const unreadCount = notifications.filter(n => n.unread).length;
+                document.getElementById('notificationBadge').style.display = unreadCount > 0 ? 'block' : 'none';
+                
+                dropdown.innerHTML = `
+                    <div class="flex items-center justify-between px-4 py-3" style="border-bottom: 1px solid #F5F5F3;">
+                        <span style="font-size: 15px; font-weight: 600;">Уведомления</span>
+                        <button onclick="clearNotifications()" style="font-size: 13px; color: #9E9E9E; background: none; border: none;">Очистить</button>
+                    </div>
+                    ${notifications.map(n => `
+                        <div class="notification-item ${n.unread ? 'notification-unread' : ''}" onclick="markAsRead(this)">
+                            <div class="notification-icon" style="background: ${n.icon === 'warning' ? '#FFF3E0' : n.icon === 'flight' ? '#E3F2FD' : '#E8F5E9'}">
+                                <span class="material-symbols-outlined" style="font-size: 16px; color: ${n.icon === 'warning' ? '#E65100' : n.icon === 'flight' ? '#1565C0' : '#2E7D32'}">${n.icon}</span>
+                            </div>
+                            <div class="flex-1">
+                                <p class="notification-title">${n.title}</p>
+                                <p class="notification-text">${n.text}</p>
+                                <p class="notification-date">${formatDate(n.date)}</p>
+                            </div>
+                            ${n.unread ? '<div style="width: 6px; height: 6px; background: #C62828; border-radius: 9999px; margin-top: 8px;"></div>' : ''}
+                        </div>
+                    `).join('')}
+                `;
+                dropdown.style.display = 'block';
+                notificationsOpen = true;
+            }
+        }
+        
+        window.clearNotifications = function() {
+            const dropdown = document.getElementById('notificationsDropdown');
+            dropdown.innerHTML = `
+                <div class="flex items-center justify-between px-4 py-3" style="border-bottom: 1px solid #F5F5F3;">
+                    <span style="font-size: 15px; font-weight: 600;">Уведомления</span>
+                    <button onclick="clearNotifications()" style="font-size: 13px; color: #9E9E9E; background: none; border: none;">Очистить</button>
+                </div>
+                <div class="flex flex-col items-center py-8 text-center">
+                    <span class="material-symbols-outlined mb-2" style="font-size: 32px; color: #9E9E9E;">notifications_none</span>
+                    <p style="font-size: 14px; color: #9E9E9E;">Пока нет уведомлений</p>
+                </div>
+            `;
+            document.getElementById('notificationBadge').style.display = 'none';
+        }
+        
+        window.markAsRead = function(element) {
+            element.classList.remove('notification-unread');
+            const unreadDots = document.querySelectorAll('.notification-unread');
+            document.getElementById('notificationBadge').style.display = unreadDots.length > 0 ? 'block' : 'none';
+        }
+        
+        // Scroll header hide/show
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            lastScroll = currentScroll;
+            scrollTopBtn.style.display = currentScroll > 500 ? 'flex' : 'none';
+        });
+        
+        // Update showcase dots on scroll
+        const showcaseScroll = document.getElementById('showcaseScroll');
+        if (showcaseScroll) {
+            showcaseScroll.addEventListener('scroll', () => {
+                const pageWidth = showcaseScroll.clientWidth;
+                const scrollLeft = showcaseScroll.scrollLeft;
+                const current = Math.round(scrollLeft / pageWidth);
+                document.querySelectorAll('.showcase-dot').forEach((dot, i) => {
+                    dot.style.background = i === current ? '#1A1A1A' : '#DDDDD8';
+                });
+            });
+        }
+        
+        // Close notifications on outside click
+        document.addEventListener('click', (e) => {
+            const dropdown = document.getElementById('notificationsDropdown');
+            const btn = document.getElementById('notificationBtn');
+            if (notificationsOpen && dropdown && !dropdown.contains(e.target) && !btn.contains(e.target)) {
+                dropdown.style.display = 'none';
+                notificationsOpen = false;
+            }
+        });
+        
+        // Initialize
+        document.getElementById('notificationBtn').addEventListener('click', toggleNotifications);
+        renderReviews();
+        renderFAQ();
+        renderOrders();
+        updateTotal();
+        
+        // Set default active tab
+        switchTab('stores');
+    </script>
+</body>
+</html>
